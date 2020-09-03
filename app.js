@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 //const morgan = require("morgan");
 const cors = require("cors");
+const adminRoute = require("./routes/adminRoute");
 const userRoute = require("./routes/userRoute");
 // npm install parckage --save
 // Use body parser middleware to parse body of incoming requests
@@ -11,6 +12,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes which should handle requests
+app.use("/api/admin", adminRoute);
 app.use("/api/user", userRoute);
 // Handle Error Requests
 

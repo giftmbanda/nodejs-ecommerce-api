@@ -5,20 +5,24 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const adminRoute = require("./routes/adminRoute");
 const userRoute = require("./routes/userRoute");
-// npm install parckage --save
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+
+
+// npm install swagger-ui-express --save
 // Use body parser middleware to parse body of incoming requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
 // Routes which should handle requests
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
 app.use("/api/admin", adminRoute);
 app.use("/api/user", userRoute);
 // Handle Error Requests
 
 app.get("/", (req, res) => {
-  console.log('API IS NOW WORKING');
-  res.send('API IS NOW WORKING');
+  res.send('API IS NOW WORKING, append "/docs" to the current url to access API documentation');
 });
 
 // Handle Error Requests

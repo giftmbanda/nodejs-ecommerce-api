@@ -1,0 +1,450 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "NodeJs eCommerce API",
+    "description": "by Gift Banda",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API for users in the system"
+    }
+  ],
+  "schemes": ["http"],
+
+  "consumes": ["application/json", "- multipart/form-data"],
+  "produces": ["application/json"],
+  "paths": {
+    "/api/user/register": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/register": {
+      "post": {
+        "tags": ["Admin"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "tags": ["Users"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/savecart": {
+      "post": {
+        "tags": ["Cart"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          },
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/savecat": {
+      "post": {
+        "tags": ["Category"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "admin-token",
+            "in": "header"
+          },
+          {
+            "name": "save cat",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/addproduct": {
+      "post": {
+        "tags": ["Product"],
+
+        "summary": "Uploads a file.",
+
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "formData",
+            "type": "string",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "type": "string",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "type": "string",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          },
+
+          {
+            "name": "productImage",
+            "in": "formData",
+            "type": "file",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/product"
+            }
+          },
+          {
+            "name": "admin-token",
+            "in": "header"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {}
+      }
+    },
+    "/api/admin/login": {
+      "post": {
+        "tags": ["Admin"],
+        "description": "Create new user in system",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/data": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "check user auth",
+        "description": "",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/user/:userId": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "check user auth",
+        "description": "",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          },
+          {
+            "name": "userId",
+            "in": "params"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "User deleted succesfully"
+          }
+        }
+      }
+    },
+    "/api/user/getcart": {
+      "get": {
+        "tags": ["Cart"],
+        "summary": "show cart items",
+        "description": "",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/user/getcategories": {
+      "get": {
+        "tags": ["Category"],
+        "summary": "show categories items",
+        "description": "",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/user/getproduct": {
+      "get": {
+        "tags": ["Product"],
+        "summary": "view products",
+        "description": "",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
+    "/api/admin/data": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": " check admin auth",
+        "description": "",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "admin-token",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Admin": {
+      "required": ["email", "_id"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": "true"
+        },
+        "email": {
+          "type": "string",
+          "required": "true"
+        },
+        "password": {
+          "type": "string",
+          "required": "true"
+        },
+        "phonenumber": {
+          "type": "string",
+          "match": "/^[0-9]{10}$/"
+        },
+        "date": {
+          "type": "Date",
+          "default": "Date.now"
+        }
+      }
+    },
+    "User": {
+      "required": ["email", "_id"],
+      "properties": {
+        "name": {
+          "type": "String",
+          "required": "true"
+        },
+        "email": {
+          "type": "String",
+          "required": "true"
+        },
+        "password": {
+          "type": "String",
+          "required": "true"
+        },
+        "phonenumber": {
+          "type": "String",
+          "match": "/^[0-9]{10}$/"
+        }
+      }
+    },
+
+    "Categories": {
+      "properties": {
+        "name": {
+          "type": "String"
+        },
+
+        "product": {
+          "type": "mongoose.Schema.Types.ObjectId",
+          "$ref": "#/definitions/Product",
+          "required": "true"
+        }
+      }
+    },
+    "Product": {
+      "properties": {
+        "name": { "type": "String", "required": "true" },
+        "price": { "type": "Number", "required": "true" },
+        "productImage": {
+          "type": "String"
+        }
+      }
+    },
+    "Cart": {
+      "properties": {
+        "product": {
+          "type": "mongoose.Schema.Types.ObjectId",
+          "$ref": "#/definitions/Product",
+          "required": "true"
+        },
+
+        "quantity": {
+          "type": "Number",
+          "default": "1"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    }
+  }
+}

@@ -3,13 +3,15 @@ const app = express();
 const bodyParser = require("body-parser");
 //const morgan = require("morgan");
 const cors = require("cors");
+const categoryRoute = require("./routes/cateRoute");
+const productRoute = require("./routes/prodRoute");
 const adminRoute = require("./routes/adminRoute");
 const userRoute = require("./routes/userRoute");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
 
-// npm install swagger-ui-express --save
+// npm install mongoose-paginate --save
 // Use body parser middleware to parse body of incoming requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -17,6 +19,8 @@ app.use(cors());
 
 // Routes which should handle requests
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
+app.use("/api/products", productRoute);
+app.use("/api/cate", categoryRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api/user", userRoute);
 // Handle Error Requests

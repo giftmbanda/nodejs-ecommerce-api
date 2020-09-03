@@ -4,9 +4,10 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-const Admin = require("../models/adminmodel");
+const Admin = require("../models/adminModel");
 const MASTER_KEY = process.env.MASTER_KEY;
 //const { registerValidation, loginValidation } = require("../validation");
+
 
 // signup
 exports.signUp = async (req, res, next) => {

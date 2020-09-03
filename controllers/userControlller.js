@@ -5,14 +5,14 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const User = require("../models/userModel");
+const { registerValidation, loginValidation } = require("../validation");
 const JWT_KEY = process.env.JWT_KEY;
-//const { registerValidation, loginValidation } = require("../validation");
 
 
 // signup
 exports.signUp = async (req, res, next) => {
-  //const { error } = registerValidation(req.body);
-  //if (error) return res.status(400).send(error.details[0].message);
+  const { error } = registerValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
   const emailExist = await User.findOne({ email: req.body.email }); //returns the first document that matches the query criteria or null
   if (emailExist) return res.status(400).send({ message: "Email already exist!" });
@@ -28,8 +28,8 @@ exports.signUp = async (req, res, next) => {
 
 // login
 exports.logIn = async (req, res) => {
-  //const { error } = loginValidation(req.body);
-  //if (error) return res.status(400).send(error.details[0].message);
+  const { error } = loginValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
   const foundUser = await User.findOne({ email: req.body.email }); //returns the first document that matches the query criteria or null
   if (!foundUser) return res.status(400).send({ message: "Email is not found" });

@@ -1,13 +1,14 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-//const morgan = require("morgan");
+const swaggerUi = require("swagger-ui-express");
 const cors = require("cors");
+
 const categoryRoute = require("./routes/cateRoute");
 const productRoute = require("./routes/prodRoute");
+const cartRoute = require("./routes/cartRoute");
 const adminRoute = require("./routes/adminRoute");
 const userRoute = require("./routes/userRoute");
-const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
 
@@ -21,6 +22,7 @@ app.use(cors());
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
 app.use("/api/products", productRoute);
 app.use("/api/cate", categoryRoute);
+app.use("/api/cart", cartRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api/user", userRoute);
 // Handle Error Requests

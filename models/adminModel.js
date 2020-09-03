@@ -10,7 +10,7 @@ const adminSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
-      lowercase: true
+      lowercase: true,
     },
     password: {
       type: String,
@@ -31,4 +31,5 @@ const adminSchema = new mongoose.Schema(
   },
   { timestamps: true } //to include createdAt and updatedAt
 );
+
 module.exports = mongoose.model("Admin", adminSchema);

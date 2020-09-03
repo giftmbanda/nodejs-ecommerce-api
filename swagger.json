@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "https://novelty-v1.herokuapp.com",
+  "host": "novelty-v1.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
@@ -17,7 +17,7 @@
       "description": "API for users in the system"
     }
   ],
-  "schemes": ["http"],
+  "schemes": ["https"],
 
   "consumes": ["application/json", "- multipart/form-data"],
   "produces": ["application/json"],

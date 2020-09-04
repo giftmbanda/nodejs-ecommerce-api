@@ -48,7 +48,9 @@ exports.logIn = async (req, res) => {
 // Update admin
 exports.updateAdmn = async (req, res) => {
   try {
-    const updatedAdmin = await Admin.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body }); // the `await` is very important here!
+
+    req.body.password = await bcrypt.hashSync(req.body.password, 10); //encrypt the password before updating
+    const updatedAdmin = await Admin.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body });
     // findOneAndUpdate returns a document if found or null if not found
 
     if (!updatedAdmin) {
@@ -78,8 +80,8 @@ exports.deleteAdmin = async (req, res) => {
 exports.data = async (req, res) => {
   res.json({
     posts: {
-      title: "my first post admin",
-      discription: "random data you not acess",
+      title: "Admin Authentication",
+      discription: "random data you can access because you\'re authenticated",
     },
   });
 };

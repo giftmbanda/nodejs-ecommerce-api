@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
 
+
 if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
+  DB_URL = process.env.LOCAL_DB_URL;
+}else{
+  DB_URL = process.env.DB_URL; //if is application is running locally then use local database 
 }
 
 const database = mongoose.connect(
-  process.env.DB_URL,
+  DB_URL,
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
   (error) => {
     if (!error) {

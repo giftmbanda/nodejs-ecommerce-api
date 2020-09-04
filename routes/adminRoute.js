@@ -1,15 +1,16 @@
 const router = require("express").Router();
 const adminControler = require("../controllers/adminController");
-//const { verifyUser, verifyAdmin } = require("../verifyToken");
+const userControler = require("../controllers/userControlller");
+const { verifyUser, verifyAdmin } = require("../verifyToken");
 
 router.post("/", adminControler.signUp)
 
 router.post("/login", adminControler.logIn)
 
-router.patch('/:userId', adminControler.updateAdmn);
+router.patch('/:userId', verifyAdmin, adminControler.updateAdmn);
 
-router.delete('/:userId', adminControler.deleteAdmin);
+router.delete('/:userId', verifyAdmin, adminControler.deleteAdmin); //delete admins
 
-router.get("/data", adminControler.data)
+router.get("/data", verifyAdmin, adminControler.data)
 
 module.exports = router;

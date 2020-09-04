@@ -49,13 +49,13 @@ exports.logIn = async (req, res) => {
 // Update user
 exports.updateUser = async (req, res) => {
   try {
-    const updatedUser = await User.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body }); // the `await` is very important here!
-    // findOneAndUpdate returns a document if found or null if not found
+    req.body.password = await bcrypt.hashSync(req.body.password, 10); //encrypt the password before updating
+    const updatedUser = await User.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body });
 
     if (!updatedUser) {
       return res.status(400).send({ message: "Could not update user" });
     }
-    return res.status(200).send({ message: "User updated successfully" });
+    return res.status(200).send({ message: "User updated successfully", updatedUser });
 
   } catch (error) {
     return res.status(400).send({ error: "An error has occured, unable to update user" });
@@ -79,6 +79,7 @@ exports.deleteUser = async (req, res) => {
 exports.data = async (req, res) => {
   res.json({
     posts: {
+      title: "User Authentication",
       discription: "random data you can access because you\'re authenticated",
     },
   });

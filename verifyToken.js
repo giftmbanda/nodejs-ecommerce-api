@@ -3,7 +3,7 @@ const JWT_KEY = process.env.JWT_KEY;
 const MASTER_KEY = process.MASTER_KEY;
 
 const verifyUser = (req, res, next) => {
-    const token = req.header("auth-token");
+    const token = req.header("token");
     if (!token) return res.status(400).send("access denied");
   
     try {
@@ -16,7 +16,7 @@ const verifyUser = (req, res, next) => {
 };
 
 const verifyAdmin = (req, res, next) => {
-    const token = req.header("admin-token");
+    const token = req.header("token");
     if (!token) return res.status(400).send("access denied");
   
     try {

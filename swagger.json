@@ -487,11 +487,6 @@
           "default": "1"
         }
       }
-    },
-
-    "Users": {
-      "type": "array",
-      "$ref": "#/definitions/User"
     }
   }
 }

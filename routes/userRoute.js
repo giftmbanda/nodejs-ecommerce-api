@@ -8,8 +8,8 @@ router.post("/login", userControler.logIn);
 
 router.patch('/:userId', verifyUser, userControler.updateUser);
 
-router.delete('/:userId', userControler.deleteUser);
+router.delete('/:userId', verifyUser, userControler.deleteUser);
 
-router.get("/data", userControler.data);
+router.get("/data", verifyUser, userControler.data);
 
 module.exports = router;

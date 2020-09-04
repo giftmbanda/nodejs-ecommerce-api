@@ -79,8 +79,7 @@ exports.deleteUser = async (req, res) => {
 exports.data = async (req, res) => {
   res.json({
     posts: {
-      title: "my first post user",
-      discription: "random data you not acess",
+      discription: "random data you can access because you\'re authenticated",
     },
   });
 };

@@ -9,28 +9,32 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
+
   "host": "novelty-v1.herokuapp.com",
   "basePath": "/",
   "tags": [
     {
       "name": "Users",
-      "description": "API for users in the system"
+      "description": "Endpoints for user"
     }
   ],
+
   "schemes": ["https"],
 
   "consumes": ["application/json", "- multipart/form-data"],
   "produces": ["application/json"],
   "paths": {
-    "/api/user/register": {
+    "/api/user/": {
       "post": {
         "tags": ["Users"],
-        "description": "Create new user in system",
+        "summary": "Create a new user",
+        "description": "Used to register",
+
         "parameters": [
           {
             "name": "user",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "Create new user in system",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -39,14 +43,114 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "New user is created",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "Created new user in system"
           }
         }
       }
     },
+    "/api/user/login": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Log in a user",
+        "description": "Used to sign in",
+
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "login user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "user successfully logged in"
+          }
+        }
+      }
+    },
+
+    "/api/user/:id": {
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Update user if exists",
+        "description": "Update the details of user if it exists",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "Create new user in system",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header"
+          },
+          {
+            "name": "userId",
+            "in": "params"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "User updated successfully"
+          }
+        }
+      }
+    },
+
+    "/api/user/:userId": {
+      "delete": {
+        "tags": ["Users"],
+        "summary": "delete the user",
+        "description": "It delete the logged in user",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          },
+          {
+            "name": "userId",
+            "in": "params"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "User deleted successfully"
+          }
+        }
+      }
+    },
+    "/api/user/data": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "check user authentication",
+        "description": "route that is omly accessable for authenticated user",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successfully authenticated"
+          }
+        }
+      }
+    },
+
     "/api/admin/register": {
       "post": {
         "tags": ["Admin"],
@@ -65,31 +169,6 @@
         "responses": {
           "200": {
             "description": "New user is created",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        }
-      }
-    },
-    "/api/user/login": {
-      "post": {
-        "tags": ["Users"],
-        "description": "Login",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User login",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "user logged in",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -229,50 +308,6 @@
             "schema": {
               "$ref": "#/definitions/User"
             }
-          }
-        }
-      }
-    },
-    "/api/user/data": {
-      "get": {
-        "tags": ["Users"],
-        "summary": "check user auth",
-        "description": "",
-
-        "produces": ["application/xml", "application/json"],
-        "parameters": [
-          {
-            "name": "auth-token",
-            "in": "header"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/api/user/:userId": {
-      "get": {
-        "tags": ["Users"],
-        "summary": "check user auth",
-        "description": "",
-
-        "produces": ["application/xml", "application/json"],
-        "parameters": [
-          {
-            "name": "auth-token",
-            "in": "header"
-          },
-          {
-            "name": "userId",
-            "in": "params"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "User deleted succesfully"
           }
         }
       }

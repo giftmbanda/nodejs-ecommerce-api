@@ -1,7 +1,7 @@
 const http = require("http");
 const app = require("./app");
 const server = http.createServer(app);
-require("./database/db"); //import the database from config directory
+require("./database/db"); //import the database
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();

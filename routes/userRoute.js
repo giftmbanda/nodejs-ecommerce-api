@@ -2,7 +2,7 @@ const router = require("express").Router();
 const userControler = require("../controllers/userControlller");
 //const { verifyUser, verifyAdmin } = require("../verifyToken");
 
-router.post("/register", userControler.signUp);
+router.post("/", userControler.signUp);
 
 router.post("/login", userControler.logIn);
 

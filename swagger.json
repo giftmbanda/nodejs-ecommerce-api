@@ -123,6 +123,7 @@
         }
       }
     },
+
     "/api/user/data": {
       "get": {
         "tags": ["User"],
@@ -166,6 +167,135 @@
         "responses": {
           "200": {
             "description": "User created successfully!"
+          }
+        }
+      }
+    },
+
+    "/api/admin/login":{ 
+      "post": {
+        "tags": ["Admin"],
+        "summary": "log in admin",
+        "description": "used to sign in",
+
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "log in user",
+            "schema": {
+              "$ref": "#/definitions/_User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "user successfully logged in"
+          }
+        }
+      }
+    },
+    
+    "/api/admin/:id": {
+      "patch": {
+        "tags": ["Admin"],
+        "summary": "Update admin if exists",
+        "description": "Update the details of admin if exists",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "update admin user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            "name": "auth-token",
+            "in": "header"
+          },
+          {
+            "name": "userId",
+            "in": "params"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "User updated successfully"
+          }
+        }
+      }
+    },
+
+    "/api/admin/:userId": {
+      "delete": {
+        "tags": ["Admin"],
+        "summary": "delete the admin user",
+        "description": "It delete the logged in user",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          },
+          {
+            "name": "userId",
+            "in": "params"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "User deleted successfully"
+          }
+        }
+      }
+    },
+
+    "/api/admin/user/:userId": {
+      "delete": {
+        "tags": ["Admin"],
+        "summary": "delete the user",
+        "description": "It delete the user",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "auth-token",
+            "in": "header"
+          },
+          {
+            "name": "userId",
+            "in": "params"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "User deleted successfully"
+          }
+        }
+      }
+    },
+
+    "/api/admin/data": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": " check admin auth",
+        "description": "",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "name": "admin-token",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
           }
         }
       }
@@ -225,6 +355,7 @@
         }
       }
     },
+
     "/api/user/addproduct": {
       "post": {
         "tags": ["Product"],
@@ -278,28 +409,7 @@
         "responses": {}
       }
     },
-    "/api/admin/login":{ 
-      "post": {
-        "tags": ["Admin"],
-        "description": "Create new user in system",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User that we want to create",
-            "schema": {
-              "$ref": "#/definitions/_User"
-            }
-          }
-        ],
-        "produces": ["application/json"],
-        "responses": {
-          "200": {
-            "description": "New user is created"
-          }
-        }
-      }
-    },
+    
     "/api/user/getcart": {
       "get": {
         "tags": ["Cart"],
@@ -320,6 +430,7 @@
         }
       }
     },
+
     "/api/user/getcategories": {
       "get": {
         "tags": ["Category"],
@@ -350,26 +461,6 @@
         "parameters": [
           {
             "name": "auth-token",
-            "in": "header"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        }
-      }
-    },
-    "/api/admin/data": {
-      "get": {
-        "tags": ["Admin"],
-        "summary": " check admin auth",
-        "description": "",
-
-        "produces": ["application/xml", "application/json"],
-        "parameters": [
-          {
-            "name": "admin-token",
             "in": "header"
           }
         ],

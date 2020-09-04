@@ -29,5 +29,4 @@ const verifyAdmin = (req, res, next) => {
     }
 };
 
-module.exports.verifyUser = verifyUser;
-module.exports.verifyAdmin = verifyAdmin;
+module.exports = { verifyUser, verifyAdmin }

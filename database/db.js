@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-
+let DB_URL="";
 if (process.env.NODE_ENV !== "production") {
-  DB_URL = process.env.LOCAL_DB_URL;
+  DB_URL = process.env.LOCAL_DB_URL; //if application is running locally then use local database 
 }else{
-  DB_URL = process.env.DB_URL; //if is application is running locally then use local database 
+  DB_URL = process.env.DB_URL; 
 }
 
 const database = mongoose.connect(

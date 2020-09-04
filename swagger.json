@@ -11,12 +11,6 @@
   },
 
   "host": "novelty-v1.herokuapp.com",
-  "tags": [
-    {
-      "name": "Users",
-      "description": "Endpoints for user"
-    }
-  ],
 
   "schemes": ["https"],
 
@@ -25,7 +19,7 @@
   "paths": {
     "/api/user/": {
       "post": {
-        "tags": ["Users"],
+        "tags": ["User"],
         "summary": "Create a new user",
         "description": "Used to register",
 
@@ -33,7 +27,7 @@
           {
             "name": "user",
             "in": "body",
-            "description": "Create new user in system",
+            "description": "Create new user",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -42,14 +36,14 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Created new user in system"
+            "description": "User created successfully!"
           }
         }
       }
     },
     "/api/user/login": {
       "post": {
-        "tags": ["Users"],
+        "tags": ["User"],
         "summary": "Log in a user",
         "description": "Used to sign in",
 
@@ -74,7 +68,7 @@
 
     "/api/user/:id": {
       "patch": {
-        "tags": ["Users"],
+        "tags": ["User"],
         "summary": "Update user if exists",
         "description": "Update the details of user if it exists",
 
@@ -107,7 +101,7 @@
 
     "/api/user/:userId": {
       "delete": {
-        "tags": ["Users"],
+        "tags": ["User"],
         "summary": "delete the user",
         "description": "It delete the logged in user",
 
@@ -131,7 +125,7 @@
     },
     "/api/user/data": {
       "get": {
-        "tags": ["Users"],
+        "tags": ["User"],
         "summary": "check user authentication",
         "description": "route that is omly accessable for authenticated user",
 
@@ -152,13 +146,17 @@
 
     "/api/admin/": {
       "post": {
+  
         "tags": ["Admin"],
-        "description": "Create new user in system",
+        "summary": "Create a new admin",
+        "description": "Create new admin",
+
         "parameters": [
           {
             "name": "user",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "Create new admin",
+
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -167,10 +165,7 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "New user is created",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "User created successfully!"
           }
         }
       }
@@ -225,10 +220,7 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "new caegory created",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "new caegory created"
           }
         }
       }
@@ -246,7 +238,7 @@
             "type": "string",
             "description": "add a product",
             "schema": {
-              "$ref": "#/definitions/product"
+              "$ref": "#/definitions/Product"
             }
           },
           {
@@ -255,7 +247,7 @@
             "type": "string",
             "description": "User that we want to create",
             "schema": {
-              "$ref": "#/definitions/product"
+              "$ref": "#/definitions/Product"
             }
           },
           {
@@ -264,7 +256,7 @@
             "type": "string",
             "description": "User that we want to create",
             "schema": {
-              "$ref": "#/definitions/product"
+              "$ref": "#/definitions/Product"
             }
           },
 
@@ -274,7 +266,7 @@
             "type": "file",
             "description": "User that we want to create",
             "schema": {
-              "$ref": "#/definitions/product"
+              "$ref": "#/definitions/Product"
             }
           },
           {
@@ -286,7 +278,7 @@
         "responses": {}
       }
     },
-    "/api/admin/login": {
+    "/api/admin/login":{ 
       "post": {
         "tags": ["Admin"],
         "description": "Create new user in system",
@@ -303,10 +295,7 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "New user is created",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
+            "description": "New user is created"
           }
         }
       }
@@ -394,33 +383,7 @@
   },
 
   "definitions": {
-
-    "Admin": {
-      "required": ["email", "_id"],
-      "properties": {
-        "name": {
-          "type": "string",
-          "required": "true"
-        },
-        "email": {
-          "type": "string",
-          "required": "true"
-        },
-        "password": {
-          "type": "string",
-          "required": "true"
-        },
-        "phonenumber": {
-          "type": "string",
-          "match": "/^[0-9]{10}$/"
-        },
-        "date": {
-          "type": "Date",
-          "default": "Date.now"
-        }
-      }
-    },
-
+    
     "User": {
       "required": ["email", "_id"],
       "properties": {
@@ -443,16 +406,10 @@
       }
     },
 
-    "Categories": {
+    "Category": {
       "properties": {
         "name": {
           "type": "String"
-        },
-
-        "product": {
-          "type": "mongoose.Schema.Types.ObjectId",
-          "$ref": "#/definitions/Product",
-          "required": "true"
         }
       }
     },
@@ -463,6 +420,11 @@
         "price": { "type": "Number", "required": "true" },
         "productImage": {
           "type": "String"
+        },
+        "category": {
+          "type": "mongoose.Schema.Types.ObjectId",
+          "$ref": "#/definitions/Category",
+          "required": "true"
         }
       }
     },

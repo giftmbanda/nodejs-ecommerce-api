@@ -1,13 +1,13 @@
 const jwt = require("jsonwebtoken");
 const JWT_KEY = process.env.JWT_KEY;
-const MASTER_KEY = process.MASTER_KEY;
+const MASTER_KEY = process.env.MASTER_KEY;
 
 const verifyUser = (req, res, next) => {
     const token = req.header("token");
     if (!token) return res.status(400).send("access denied");
   
     try {
-      const verifiedUser = jwt.verify(token,JWT_KEY);
+      const verifiedUser = jwt.verify(token, JWT_KEY);
       req.user = verifiedUser;
       next();
     } catch (err) {
@@ -24,7 +24,6 @@ const verifyAdmin = (req, res, next) => {
       req.admin = verifiedAdmin;
       next();
     } catch (err) {
-      //res.send(err)
       res.status(400).send("invalid token");
     }
 };

@@ -75,12 +75,12 @@
     "/api/user/login": {
       "post": {
         "tags": ["Users"],
-        "description": "Create new user in system",
+        "description": "Login",
         "parameters": [
           {
             "name": "user",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "User login",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -89,7 +89,7 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "user logged in",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -100,7 +100,7 @@
     "/api/user/savecart": {
       "post": {
         "tags": ["Cart"],
-        "description": "Create new user in system",
+        "description": "add item to cart",
         "parameters": [
           {
             "name": "auth-token",
@@ -109,7 +109,7 @@
           {
             "name": "user",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "add item to cart",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -118,7 +118,7 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "item added to cart",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -129,7 +129,7 @@
     "/api/user/savecat": {
       "post": {
         "tags": ["Category"],
-        "description": "Create new user in system",
+        "description": "Create category",
         "parameters": [
           {
             "name": "admin-token",
@@ -138,7 +138,7 @@
           {
             "name": "save cat",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "create category",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -147,7 +147,7 @@
         "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "new caegory created",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -159,14 +159,14 @@
       "post": {
         "tags": ["Product"],
 
-        "summary": "Uploads a file.",
+        "summary": "add a product",
 
         "parameters": [
           {
             "name": "categoryId",
             "in": "formData",
             "type": "string",
-            "description": "User that we want to create",
+            "description": "add a product",
             "schema": {
               "$ref": "#/definitions/product"
             }

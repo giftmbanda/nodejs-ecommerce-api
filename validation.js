@@ -5,7 +5,7 @@ function registerValidation(data) {
     name: joi.string().min(4).required(),
     email: joi.string().min(6).email().required(),
     password: joi.string().min(6).required(),
-    phonenumber: joi.string().min(10).max(10).pattern(new RegExp('/^[0-9]{10}$/')),
+    phonenumber: joi.string().min(10).max(10),
   });
   return schema.validate(data);
 }

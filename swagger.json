@@ -150,7 +150,7 @@
       }
     },
 
-    "/api/admin/register": {
+    "/api/admin/": {
       "post": {
         "tags": ["Admin"],
         "description": "Create new user in system",
@@ -296,7 +296,7 @@
             "in": "body",
             "description": "User that we want to create",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/_User"
             }
           }
         ],
@@ -392,7 +392,9 @@
       }
     }
   },
+
   "definitions": {
+
     "Admin": {
       "required": ["email", "_id"],
       "properties": {
@@ -418,6 +420,7 @@
         }
       }
     },
+
     "User": {
       "required": ["email", "_id"],
       "properties": {
@@ -453,6 +456,7 @@
         }
       }
     },
+
     "Product": {
       "properties": {
         "name": { "type": "String", "required": "true" },
@@ -462,6 +466,14 @@
         }
       }
     },
+
+    "_User": {      
+      "properties": {
+        "email": { "type": "String","required": "true" },
+        "password": { "type": "String", "required": "true" }
+      }
+    },
+
     "Cart": {
       "properties": {
         "product": {
@@ -476,6 +488,7 @@
         }
       }
     },
+
     "Users": {
       "type": "array",
       "$ref": "#/definitions/User"

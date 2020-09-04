@@ -59,7 +59,7 @@
             "in": "body",
             "description": "login user",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/_User"
             }
           }
         ],

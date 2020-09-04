@@ -11,8 +11,8 @@ const { registerValidation, loginValidation } = require("../validation");
 
 // signup
 exports.signUp = async (req, res, next) => {
-  //const { error } = registerValidation(req.body);
-  //if (error) return res.status(400).send(error.details[0].message);
+  const { error } = registerValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
   const emailexist = await Admin.findOne({ email: req.body.email });
   if (emailexist) return res.status(400).send("email  already exist");
@@ -28,8 +28,8 @@ exports.signUp = async (req, res, next) => {
 
 // login
 exports.logIn = async (req, res) => {
-  //const { error } = loginValidation(req.body);
-  //if (error) return res.status(400).send(error.details[0].message);
+  const { error } = loginValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
   const foundAdmin = await Admin.findOne({ email: req.body.email }); //returns the first document that matches the query criteria or null
   if (!foundAdmin) return res.status(400).send({ message: "Email is not found" });

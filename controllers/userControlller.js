@@ -11,7 +11,7 @@ const JWT_KEY = process.env.JWT_KEY;
 
 // signup
 exports.signUp = async (req, res, next) => {
-  const { error } = registerValidation(req.body);
+  const { error, value } = registerValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   const emailExist = await User.findOne({ email: req.body.email }); //returns the first document that matches the query criteria or null

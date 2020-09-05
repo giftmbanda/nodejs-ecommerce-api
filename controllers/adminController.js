@@ -40,7 +40,7 @@ exports.logIn = async (req, res) => {
 
     // create and assign jwt
     const token = await jwt.sign({ _id: foundAdmin._id }, MASTER_KEY);
-    res.header("admin-token", token).send({ message: "logged in", token });
+    res.header("admin-token", token).send({ "admin-token": token });
   } catch (error) {
     res.status(400).send(error);
   }

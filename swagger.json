@@ -10,9 +10,9 @@
     }
   },
 
-  "host": "novelty-v1.herokuapp.com",
+  "host": "localhost:3000", 
 
-  "schemes": ["https"],
+  "schemes": ["http"],
 
   "consumes": ["application/json", "- multipart/form-data"],
   "produces": ["application/json"],
@@ -66,7 +66,7 @@
       }
     },
 
-    "/api/user/:id": {
+    "/api/user/{userId}": {
       "patch": {
         "tags": ["User"],
         "summary": "Update user if exists",
@@ -99,7 +99,7 @@
       }
     },
 
-    "/api/user/:userId": {
+    "/api/user/{userId}": {
       "delete": {
         "tags": ["User"],
         "summary": "delete the user",
@@ -214,7 +214,7 @@
             }
           },
           {
-            "name": "auth-token",
+            "name": "admin-token",
             "in": "header"
           },
           {
@@ -239,7 +239,7 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            "name": "auth-token",
+            "name": "admin-token",
             "in": "header"
           },
           {
@@ -264,7 +264,7 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            "name": "auth-token",
+            "name": "admin-token",
             "in": "header"
           },
           {

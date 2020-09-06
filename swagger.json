@@ -1,16 +1,16 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is a sample API.",
+    "description": "Nodejs eCommerce Shopping API that allows API consumers to interact with the application, behind the scene it uses Nodejs, Express and MongoDB",
     "version": "1.0",
-    "title": "Novelty Nodejs eCommerce API",
+    "title": "Nodejs eCommerce API",
     "contact": {
       "email": "giftmbanda@gmail.com"
     }
   },
 
   "externalDocs": {
-    "description": "Vist Gift Banda's website",
+    "description": "click here to read a little more about the developer",
     "url": "http://giftmbanda.com"
   },
 

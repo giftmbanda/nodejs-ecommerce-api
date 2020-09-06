@@ -19,12 +19,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes which should handle requests
-app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
-app.use("/api/products", productRoute);
-app.use("/api/cate", categoryRoute);
-app.use("/api/cart", cartRoute);
-app.use("/api/admin", adminRoute);
-app.use("/api/user", userRoute);
+app.use("/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
+app.use("/v1/products", productRoute);
+app.use("/v1/cate", categoryRoute);
+app.use("/v1/cart", cartRoute);
+app.use("/v1/admin", adminRoute);
+app.use("/v1/user", userRoute);
 // Handle Error Requests
 
 app.get("/", (req, res) => {

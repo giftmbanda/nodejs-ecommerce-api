@@ -56,7 +56,7 @@ exports.updateAdmn = async (req, res) => {
     if (!updatedAdmin) {
       return res.status(400).send({ message: "Could not update user" });
     }
-    return res.status(200).send({ message: "User updated successfully" });
+    return res.status(200).send({ message: "User updated successfully", updatedUser});
 
   } catch (error) {
     return res.status(400).send({ error: "An error has occured, unable to update user" });
@@ -71,7 +71,7 @@ exports.deleteAdmin = async (req, res) => {
     if (!deletedAdmin) {
       return res.status(400).send({ message: "Could not delete user" });
     }
-    return res.status(200).send({ message: "User deleted successfully"});
+    return res.status(200).send({ message: "User deleted successfully", user: deletedAdmin});
   } catch (error) {
     return res.status(400).send({ error: "An error has occured, unable to delete user" });
   }
@@ -92,6 +92,6 @@ async function createAdmin(req) {
     name: req.body.name,
     email: req.body.email,
     password: hashPassword,
-    phonenumber: req.body.phonenumber,
+    phone: req.body.phone,
   });
 }

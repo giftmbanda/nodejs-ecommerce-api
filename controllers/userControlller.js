@@ -91,6 +91,6 @@ async function createUser(req) {
     name: req.body.name,
     email: req.body.email,
     password: hashPassword,
-    phonenumber: req.body.phonenumber,
+    phone: req.body.phone,
   });
 }

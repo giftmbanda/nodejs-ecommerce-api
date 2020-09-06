@@ -28,7 +28,7 @@ app.use("/v1/user", userRoute);
 // Handle Error Requests
 
 app.get("/", (req, res) => {
-  res.send('API IS NOW WORKING, append "/api/docs" to the current url to access API documentation');
+  res.send('API IS NOW WORKING, append "/v1/docs" to the current url to access API documentation');
 });
 
 // Handle Error Requests

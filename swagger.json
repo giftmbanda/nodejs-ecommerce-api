@@ -14,7 +14,7 @@
     "url": "http://giftmbanda.com"
   },
 
-  "host": "localhost:3000",
+  "host": "novelty-v1.herokuapp.com",
   "basePath": "/v1",
 
   "tags": [
@@ -24,7 +24,7 @@
     }
   ],
 
-  "schemes": ["http", "https"],
+  "schemes": ["https"],
 
   "paths": {
     "/user": {

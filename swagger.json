@@ -185,7 +185,7 @@
     "/admin": {
       "post": {
         "tags": ["admin"],
-        "summary": "Create admin user",
+        "summary": "Create admin",
         "description": "This can only be done by the logged in user.",
 
         "produces": ["application/xml", "application/json"],
@@ -214,7 +214,7 @@
     "/admin/login": {
       "post": {
         "tags": ["admin"],
-        "summary": "Loggin admin user",
+        "summary": "Loggin admin",
         "description": "",
 
         "produces": ["application/xml", "application/json"],
@@ -222,7 +222,7 @@
           {
             "name": "body",
             "in": "body",
-            "description": "log in admin user",
+            "description": "log in admin",
             "required": true,
             "schema": {
               "$ref": "#/definitions/_User"
@@ -267,8 +267,8 @@
     "/admin/{userId}": {
       "patch": {
         "tags": ["admin"],
-        "summary": "Update admin user if exist",
-        "description": "Update the details of admin user if it exists.",
+        "summary": "Update admin if exist",
+        "description": "Update the details of admin if it exists.",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
@@ -281,7 +281,7 @@
           {
             "in": "header",
             "name": "admin-token",
-            "description": "token given to user upon a successful login"
+            "description": "token given to admin upon a successful login"
           },
           {
             "in": "body",
@@ -304,7 +304,7 @@
       },
       "delete": {
         "tags": ["admin"],
-        "summary": "Delete admin user",
+        "summary": "Delete admin",
         "description": "This can only be done by the logged in user.",
 
         "produces": ["application/xml", "application/json"],

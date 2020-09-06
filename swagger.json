@@ -14,7 +14,7 @@
     "url": "http://giftmbanda.com"
   },
 
-  "host": "novelty-v1.herokuapp.com",
+  "host": "outset-v1.herokuapp.com",
   "basePath": "/v1",
 
   "tags": [

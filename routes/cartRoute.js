@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const cartControler = require("../controllers/cartController");
-//const { verifyUser, verifyAdmin } = require("../verifyToken");
+const { verifyUser, verifyAdmin } = require("../verifyToken");
 
-router.post("/savecart", cartControler.savecart);
+router.post("/savecart", verifyUser, cartControler.savecart);
 
-router.get("/getcart", cartControler.getcart);
+router.get("/getcart", verifyUser, cartControler.getcart);
 
 // router.get("/cart", verifyUser, cartControler.cart);
 

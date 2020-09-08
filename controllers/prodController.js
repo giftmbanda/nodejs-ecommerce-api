@@ -5,28 +5,34 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 exports.saveproduct = (req, res, next) => {
+
   const product = new productm({
     category: req.body.categoryId,
     name: req.body.name,
     price: req.body.price,
     productImage: req.file.path,
+    quantity: req.body.quantity
   });
-  productm.init();
+
+  //productm.init();
+
   product.save((err) => {
+
     if (err) {
-      res.json({ error: err });
+      res.json({ error: "unable to create product",err });
     } else {
       res.json({
         message: "Product Created Successfully!",
-        product: {
-          _id: product._id,
-          category: product.category,
-          name: product.name,
-          price: product.price,
-          productImage: product.productImage,
-        },
+        product: product
+        //   _id: product._id,
+        //   category: product.category,
+        //   name: product.name,
+        //   price: product.price,
+        //   productImage: product.productImage,
+        // },
       });
     }
+    
   });
 };
 

@@ -20,7 +20,7 @@ app.use(cors());
 
 // Routes which should handle requests
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
-app.use("/products", productRoute);
+app.use("/product", productRoute);
 app.use("/cate", categoryRoute);
 app.use("/cart", cartRoute);
 app.use("/admin", adminRoute);

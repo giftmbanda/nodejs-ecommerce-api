@@ -3,14 +3,14 @@ var mongoosePaginate = require("mongoose-paginate");
 
 const productSchema = mongoose.Schema(
   {
-    category: {
+    categoryId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
-      required: true,
     },
     name: {
       type: String,
-      required: true,
+      unique: true,
+      required: true
     },
     price: {
       type: Number,
@@ -18,6 +18,10 @@ const productSchema = mongoose.Schema(
     },
     productImage: {
       type: String,
+    },
+    quantity: {
+      type: Number,
+      default: 1,
     },
     createdAt: {
       type: Date,

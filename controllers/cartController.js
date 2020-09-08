@@ -71,8 +71,9 @@ exports.savecart = async (req, res, next) => {
   // });
   const ccart = new Cart({
     //  _id: mongoose.Types.ObjectId(),
-    product: req.body.productId,
+    productId: req.body.productId,
     quantity: req.body.quantity,
+    userId: req.user._id
   });
 
   try {

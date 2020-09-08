@@ -9,24 +9,25 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+    cb(null, Date.now()); ////file.originalname+ '-'+Date.now()
   },
 });
 
-// const fileFilter = (req, file, cb) => {
-//     if (file.mimetype === 'image/jpeg' || file.imagetype === 'image/png') {
-//         cb(null, true);
-//     }
-//     else {
-//         cb(null, false);
-//     }
-// };
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.imagetype === 'image/png') {
+        cb(null, true);
+    }
+    else {
+        cb('Not an image! Please upload image only.', 400, false);
+    }
+};
 
 const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 5,
-  }, // fileFilter: fileFilter
+  storage: storage, 
+  fileFilter: fileFilter
+  // limits: {
+  //   fileSize: 1024 * 1024 * 5,
+  // },
 });
 
 router.get("/getcategories", ProdController.getproducts);

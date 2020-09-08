@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now()); ////file.originalname+ '-'+Date.now()
+    cb(null, Date.now()); //file.originalname+ '-'+Date.now()
   },
 });
 
@@ -18,16 +18,16 @@ const fileFilter = (req, file, cb) => {
         cb(null, true);
     }
     else {
-        cb('Not an image! Please upload image only.', 400, false);
+        cb("Not a valid file format", false);
     }
 };
 
 const upload = multer({
   storage: storage, 
-  fileFilter: fileFilter
-  // limits: {
-  //   fileSize: 1024 * 1024 * 5,
-  // },
+  fileFilter: fileFilter,
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
 });
 
 router.get("/getcategories", ProdController.getproducts);

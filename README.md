@@ -1,5 +1,5 @@
 # nodejs-ecommerce-api
-A NodeJs ecommerce api
+Nodejs eCommerce Shopping API that allows API consumers to interact with the application, behind the scene it uses Nodejs, Express and MongoDB, visit [outset-v1.herokuapp.com/api/docs](https://outset-v1.herokuapp.com/api/docs/) to see the API documentation.
 
 ## Dependecies
 [NodeJs](https://nodejs.org/en/) - A JavaScript runtime environment\

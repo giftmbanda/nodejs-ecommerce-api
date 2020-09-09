@@ -14,9 +14,9 @@
     "url": "http://giftmbanda.com"
   },
 
-  "host": "outset-v1.herokuapp.com",
+  "host": "localhost:3000",
 
-  "schemes": ["https"],
+  "schemes": ["http"],
 
   "tags": [
     {
@@ -30,6 +30,14 @@
     {
       "name": "category",
       "description": "Operations about category"
+    },
+    {
+      "name": "product",
+      "description": "Operations about product"
+    },
+    {
+      "name": "cart",
+      "description": "Operations about cart"
     }
     
   ],
@@ -44,14 +52,47 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "description": "Created user object",
+            
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "description": "name of the user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "description": "user email",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "description": "user password",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            
+            "in": "formData",
+            "name": "phone",
+            "type": "string",
+            "description": "user phone",
             "schema": {
               "$ref": "#/definitions/User"
             }
           }
         ],
+
         "responses": {
           "200": {
             "description": "successful operation"
@@ -72,14 +113,27 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            "name": "user",
-            "in": "body",
-            "description": "log in user",
+            
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "description": "user email",
             "schema": {
-              "$ref": "#/definitions/_User"
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "description": "password email",
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           }
         ],
+
         "responses": {
           "200": {
             "description": "successful operation"
@@ -193,14 +247,47 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
-            "description": "Created admin user object",
+            
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "description": "name of the admin",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "description": "admin email",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "description": "admin password",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            
+            "in": "formData",
+            "name": "phone",
+            "type": "string",
+            "description": "admin phone",
             "schema": {
               "$ref": "#/definitions/User"
             }
           }
         ],
+
         "responses": {
           "200": {
             "description": "successful operation"
@@ -221,11 +308,23 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "description": "log in admin",
+              
+            "in": "formData",
+            "name": "email",
+            "type": "string",
+            "description": "admin email",
             "schema": {
-              "$ref": "#/definitions/_User"
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+              
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "description": "admin password",
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           }
         ],
@@ -342,14 +441,17 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            "in": "body",
-            "name": "category",
-            "description": "category object",
+              
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "description": "category name",
             "schema": {
               "$ref": "#/definitions/Category"
             }
           }
         ],
+
         "responses": {
           "200": {
             "description": "successful operation"
@@ -563,24 +665,6 @@
 
       "xml": {
         "name": "User"
-      }
-    },
-
-    "_User": {
-      "type": "object",
-      "required": ["email", "password"],
-
-      "properties": {
-        "email": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      },
-
-      "xml": {
-        "name": "_User"
       }
     },
 

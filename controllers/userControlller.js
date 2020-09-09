@@ -18,10 +18,11 @@ exports.signUp = async (req, res, next) => {
   if (emailExist) return res.status(400).send({ message: "Email already exist!" });
 
   try {
-    const savedUser = await createUser(req).save();
-    res.status(200).send({ message: "User created successfully!", user: savedUser });
+    const newUser = await createUser(req);
+    const savedUser = await newUser.save(); 
+    return res.status(200).send({ message: "User created successfully!", user: savedUser });
   } catch (err) {
-    res.status(400).send(err);
+    return res.status(400).send({ error: "User created successfully!", error: err });
   }
 };
 
@@ -40,9 +41,9 @@ exports.logIn = async (req, res) => {
     // create and assign jwt
     const token = await jwt.sign({ _id: foundUser._id }, JWT_KEY);
 
-    res.header("auth-token", token).send({ "auth-token": token });
+    return res.status(200).header("auth-token", token).send({ "auth-token": token });
   } catch (error) {
-    res.status(400).send(error);
+    return res.status(400).send(error);
   }
 };
 
@@ -77,7 +78,7 @@ exports.deleteUser = async (req, res) => {
 };
 
 exports.data = async (req, res) => {
-  res.json({
+  return res.json({
     posts: {
       title: "User Authentication",
       discription: "random data you can access because you\'re authenticated",

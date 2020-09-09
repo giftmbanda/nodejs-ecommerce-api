@@ -28,7 +28,7 @@ exports.savecart = async (req, res, next) => {
 
   try {
     const savedcart = await v.save();
-    res.send({
+    return res.send({
       message: "Order was created",
       order: {
         _id: cart._id,
@@ -37,7 +37,7 @@ exports.savecart = async (req, res, next) => {
       },
     });
   } catch (err) {
-    res.status(400).send(err);
+    return res.status(400).send(err);
   }
 };
 
@@ -63,7 +63,7 @@ exports.getcart = (req, res, next) => {
 
     .exec()
     .then((orders) => {
-      res.status(200).json({
+      return res.status(200).json({
         count: orders.length,
         orders: orders,
       });

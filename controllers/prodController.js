@@ -15,7 +15,7 @@ exports.createProduct = async (req, res, next) => {
   //productm.init();
   try {
     savedProduct = await product.save();
-    res.status(200).send({ message: "User created successfully!", product: savedProduct });
+    return res.status(200).send({ message: "User created successfully!", product: savedProduct });
   } catch (error) {
     if (error.code === 11000)
       return res.status(200).send({ message: "product already exist" });
@@ -29,7 +29,7 @@ exports.getProducts = (req, res, next) => {
   var size = 3;
   const query = {};
   if (pageNo < 0 || pageNo == 0) {
-    res.json({ error: true, message: "inavlid page number" });
+    return res.send({ error: true, message: "inavlid page number" });
   }
   query.skip = size * (pageNo - 1);
   //query.limit = size;
@@ -50,13 +50,13 @@ exports.getProducts = (req, res, next) => {
           };
         }),
       };
-      res.status(200).json({
+      return res.status(200).send({
         count: products.length,
         products: products,
       });
     })
     .catch((error) => {
-      res.send(error);
+      return res.send(error);
       // next(error);
     });
 };

@@ -4,6 +4,8 @@ const cateSchema = mongoose.Schema(
   {
     name: {
       type: String,
+      required: true,
+      lowercase: true,
     },
     createdAt: {
       type: Date,

@@ -4,16 +4,16 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 exports.createCategory = async (req, res, next) => {
-  const category = await Category.findOne({name: req.body.name})
-  if(category) return res.status(400).send('category already exist')
+  const dbCategory = await Category.findOne({ name: req.body.name });
+  if(dbCategory) return res.status(400).send('category already exist');
 
   const newCategory = new Category ({ name: req.body.name });
 
   try {
     const savedCategory= await newCategory.save();
-    res.status(200).send({message: "categories was created", category: savedCategory});
+    return res.status(200).send({message: "categories was created", category: savedCategory});
   } catch (err) {
-    res.status(400).send(err);
+    return res.status(400).send(err);
   }
 };
 
@@ -39,13 +39,13 @@ exports.getCategories = (req, res, next) => {
     ])
     .exec()
     .then((products) => {
-      res.status(200).json({
+      return res.status(200).send({
         count: products.length,
         categories: products,
       });
     })
     .catch((error) => {
-      res.send(error);
+      return res.send(error);
       // next(error);
     });
 };

@@ -6,9 +6,9 @@ router.post("/", userControler.signUp);
 
 router.post("/login", userControler.logIn);
 
-router.patch('/:userId', verifyUser, userControler.updateUser);
+router.patch('/:userId', userControler.updateUser);
 
-router.delete('/:userId', verifyUser, userControler.deleteUser);
+router.delete('/:userId', userControler.deleteUser);
 
 router.get("/data", verifyUser, userControler.data);
 

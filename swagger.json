@@ -39,7 +39,6 @@
       "name": "cart",
       "description": "Operations about cart"
     }
-    
   ],
 
   "paths": {
@@ -52,7 +51,6 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            
             "in": "formData",
             "name": "name",
             "type": "string",
@@ -62,7 +60,6 @@
             }
           },
           {
-            
             "in": "formData",
             "name": "email",
             "type": "string",
@@ -72,7 +69,6 @@
             }
           },
           {
-            
             "in": "formData",
             "name": "password",
             "type": "string",
@@ -82,7 +78,6 @@
             }
           },
           {
-            
             "in": "formData",
             "name": "phone",
             "type": "string",
@@ -113,7 +108,6 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            
             "in": "formData",
             "name": "email",
             "type": "string",
@@ -123,7 +117,6 @@
             }
           },
           {
-            
             "in": "formData",
             "name": "password",
             "type": "string",
@@ -247,7 +240,6 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            
             "in": "formData",
             "name": "name",
             "type": "string",
@@ -257,7 +249,6 @@
             }
           },
           {
-            
             "in": "formData",
             "name": "email",
             "type": "string",
@@ -267,7 +258,6 @@
             }
           },
           {
-            
             "in": "formData",
             "name": "password",
             "type": "string",
@@ -277,7 +267,6 @@
             }
           },
           {
-            
             "in": "formData",
             "name": "phone",
             "type": "string",
@@ -308,7 +297,6 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-              
             "in": "formData",
             "name": "email",
             "type": "string",
@@ -318,7 +306,6 @@
             }
           },
           {
-              
             "in": "formData",
             "name": "password",
             "type": "string",
@@ -437,11 +424,10 @@
         "tags": ["category"],
         "summary": "add a category",
         "description": "",
-  
+
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-              
             "in": "formData",
             "name": "name",
             "type": "string",
@@ -462,13 +448,13 @@
         }
       }
     },
-    
+
     "/category/show": {
       "get": {
         "tags": ["category"],
         "summary": "list categories",
         "description": "",
-  
+
         "produces": ["application/xml", "application/json"],
 
         "responses": {
@@ -487,11 +473,10 @@
         "tags": ["product"],
         "summary": "add a categories",
         "description": "",
-  
+
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            
             "in": "formData",
             "name": "categoryId",
             "type": "string",
@@ -501,7 +486,6 @@
             }
           },
           {
-            
             "in": "formData",
             "name": "name",
             "type": "string",
@@ -511,7 +495,6 @@
             }
           },
           {
-            
             "in": "formData",
             "name": "price",
             "type": "string",
@@ -522,7 +505,6 @@
           },
 
           {
-            
             "in": "formData",
             "name": "productImage",
             "type": "file",
@@ -549,7 +531,7 @@
         "tags": ["product"],
         "summary": "list products",
         "description": "",
-  
+
         "produces": ["application/xml", "application/json"],
 
         "responses": {
@@ -568,7 +550,7 @@
         "tags": ["cart"],
         "summary": "add products to cart",
         "description": "",
-  
+
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
@@ -596,7 +578,7 @@
         "tags": ["cart"],
         "summary": "list orders",
         "description": "",
-  
+
         "produces": ["application/xml", "application/json"],
 
         "responses": {
@@ -642,11 +624,10 @@
     }
   },
 
-
   "definitions": {
     "User": {
       "type": "object",
-      "required": ["name","email", "password"],
+      "required": ["name", "email", "password", "phone"],
 
       "properties": {
         "name": {
@@ -670,7 +651,7 @@
 
     "Cart": {
       "type": "object",
-      "required": ["userId","productId", "quantity"],
+      "required": ["userId", "productId", "quantity"],
 
       "properties": {
         "userId": {
@@ -692,7 +673,7 @@
 
     "Product": {
       "type": "object",
-      "required": ["name", "price","categoryId"],
+      "required": ["name", "price", "productImage", "categoryId"],
 
       "properties": {
         "name": {

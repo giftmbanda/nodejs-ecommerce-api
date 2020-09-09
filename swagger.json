@@ -574,7 +574,7 @@
           {
             "in": "formData",
             "name": "quantity",
-            "type": "string",
+            "type": "integer",
             "description": "quantity of the products",
             "schema": {
               "$ref": "#/definitions/Cart"
@@ -611,6 +611,7 @@
         }
       }
     },
+
     "/admin/user/{userId}": {
       "delete": {
         "tags": ["admin"],

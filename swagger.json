@@ -554,14 +554,34 @@
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            "in": "body",
-            "name": "cart",
-            "description": "cart object",
+            "in": "formData",
+            "name": "userId",
+            "type": "string",
+            "description": "id of the user",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          },
+          {
+            "in": "formData",
+            "name": "productId",
+            "type": "string",
+            "description": "id of the product",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          },
+          {
+            "in": "formData",
+            "name": "quantity",
+            "type": "string",
+            "description": "quantity of the products",
             "schema": {
               "$ref": "#/definitions/Cart"
             }
           }
         ],
+
         "responses": {
           "200": {
             "description": "successful operation"

@@ -16,6 +16,8 @@
 
   "host": "outset-v1.herokuapp.com",
 
+  "schemes": ["https"],
+
   "tags": [
     {
       "name": "user",
@@ -24,10 +26,13 @@
     {
       "name": "admin",
       "description": "Operations about admin"
+    },
+    {
+      "name": "category",
+      "description": "Operations about category"
     }
+    
   ],
-
-  "schemes": ["https"],
 
   "paths": {
     "/user": {
@@ -42,7 +47,6 @@
             "in": "body",
             "name": "body",
             "description": "Created user object",
-            "required": true,
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -71,7 +75,6 @@
             "name": "user",
             "in": "body",
             "description": "log in user",
-            "required": true,
             "schema": {
               "$ref": "#/definitions/_User"
             }
@@ -193,7 +196,6 @@
             "in": "body",
             "name": "body",
             "description": "Created admin user object",
-            "required": true,
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -222,7 +224,6 @@
             "name": "body",
             "in": "body",
             "description": "log in admin",
-            "required": true,
             "schema": {
               "$ref": "#/definitions/_User"
             }
@@ -332,6 +333,180 @@
       }
     },
 
+    "/category": {
+      "post": {
+        "tags": ["category"],
+        "summary": "add a category",
+        "description": "",
+  
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "category",
+            "description": "category object",
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    
+    "/category/show": {
+      "get": {
+        "tags": ["category"],
+        "summary": "list categories",
+        "description": "",
+  
+        "produces": ["application/xml", "application/json"],
+
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+
+    "/product": {
+      "post": {
+        "tags": ["product"],
+        "summary": "add a categories",
+        "description": "",
+  
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            
+            "in": "formData",
+            "name": "categoryId",
+            "type": "string",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          {
+            
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          {
+            
+            "in": "formData",
+            "name": "price",
+            "type": "string",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+
+          {
+            
+            "in": "formData",
+            "name": "productImage",
+            "type": "file",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+
+    "/product/show": {
+      "get": {
+        "tags": ["product"],
+        "summary": "list products",
+        "description": "",
+  
+        "produces": ["application/xml", "application/json"],
+
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+
+    "/cart": {
+      "post": {
+        "tags": ["cart"],
+        "summary": "add products to cart",
+        "description": "",
+  
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "cart",
+            "description": "cart object",
+            "schema": {
+              "$ref": "#/definitions/Cart"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+
+    "/cart/show": {
+      "get": {
+        "tags": ["cart"],
+        "summary": "list orders",
+        "description": "",
+  
+        "produces": ["application/xml", "application/json"],
+
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
     "/admin/user/{userId}": {
       "delete": {
         "tags": ["admin"],
@@ -365,10 +540,11 @@
     }
   },
 
+
   "definitions": {
     "User": {
       "type": "object",
-      "required": ["email"],
+      "required": ["name","email", "password"],
 
       "properties": {
         "name": {
@@ -410,16 +586,17 @@
 
     "Cart": {
       "type": "object",
+      "required": ["productId", "quantity"],
 
       "properties": {
-        "product": {
-          "type": "mongoose.Schema.Types.ObjectId",
-          "$ref": "#/definitions/Product",
-          "required": "true"
+        "userId": {
+          "type": "string"
+        },
+        "productId": {
+          "type": "string"
         },
         "quantity": {
           "type": "integer",
-          "format": "int32",
           "default": "1"
         }
       },
@@ -431,23 +608,20 @@
 
     "Product": {
       "type": "object",
+      "required": ["name", "price","categoryId"],
 
       "properties": {
         "name": {
-          "type": "String",
-          "required": "true"
+          "type": "String"
         },
         "price": {
-          "type": "Number",
-          "required": "true"
+          "type": "number"
         },
         "productImage": {
           "type": "String"
         },
-        "category": {
-          "type": "mongoose.Schema.Types.ObjectId",
-          "$ref": "#/definitions/Category",
-          "required": "true"
+        "categoryId": {
+          "type": "String"
         }
       },
 
@@ -458,10 +632,11 @@
 
     "Category": {
       "type": "object",
+      "required": ["name"],
 
       "properties": {
         "name": {
-          "type": "String"
+          "type": "string"
         }
       },
 

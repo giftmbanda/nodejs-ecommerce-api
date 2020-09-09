@@ -10,7 +10,11 @@ if (process.env.NODE_ENV !== "production") {
 
 const database = mongoose.connect(
   DB_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false},
+  { useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useFindAndModify: false,
+    useCreateIndex: true
+  },
   (error) => {
     if (!error) {
       console.log("connected to the mongoDB");

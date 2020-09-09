@@ -18,9 +18,8 @@ exports.signUp = async (req, res, next) => {
   if (emailexist) return res.status(400).send("email  already exist");
 
   try {
-    const newAdmin = await createAdmin(req);
-    const savedAdmin = await newAdmin.save(); // await createAdmin(req).save();
-    res.status(200).send({ message: "User created successfully!", userId: savedAdmin._id });
+    const savedAdmin = await createAdmin(req).save();
+    res.status(200).send({ message: "User created successfully!", user: savedUser  });
   } catch (err) {
     res.status(400).send(err);
   }
@@ -40,6 +39,7 @@ exports.logIn = async (req, res) => {
 
     // create and assign jwt
     const token = await jwt.sign({ _id: foundAdmin._id }, MASTER_KEY);
+    
     res.header("admin-token", token).send({ "admin-token": token });
   } catch (error) {
     res.status(400).send(error);

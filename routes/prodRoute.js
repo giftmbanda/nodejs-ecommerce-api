@@ -9,31 +9,28 @@ const storage = multer.diskStorage({
     cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now()); //file.originalname+ '-'+Date.now()
+    cb(null, Date.now() + "_" + file.originalname);
   },
 });
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || file.imagetype === 'image/png') {
-        cb(null, true);
-    }
-    else {
-        cb("Not a valid file format", false);
-    }
+  if (file.mimetype === "image/jpeg" || file.imagetype === "image/png") {
+    cb(null, true);
+  } else {
+    cb("Not a valid file format", false);
+  }
 };
 
 const upload = multer({
-  storage: storage, 
+  storage: storage,
   fileFilter: fileFilter,
   limits: {
     fileSize: 1024 * 1024 * 5,
   },
 });
 
-router.get("/getcategories", ProdController.getproducts);
+router.post("/", upload.single("productImage"), ProdController.createProduct);
 
-router.post("/addproduct", upload.single("productImage"), ProdController.saveproduct);
-
-router.get("/getproduct", ProdController.getproduct);
+router.get("/show", ProdController.getProducts);
 
 module.exports = router;

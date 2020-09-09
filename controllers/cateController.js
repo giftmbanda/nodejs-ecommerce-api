@@ -1,48 +1,51 @@
-const categories = require("../models/cateModel");
+const Category  = require("../models/cateModel");
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-exports.saveCategory = async (req, res, next) => {
-  // const cart = await Product.findOne({name:req.body.name})
-  // if(!name) return res.status(400).send('product  is not found')
+exports.createCategory = async (req, res, next) => {
+  const category = await Category.findOne({name: req.body.name})
+  if(category) return res.status(400).send('category already exist')
 
-  const ccat = new categories({
-    //  _id: mongoose.Types.ObjectId(),
-    name: req.body.name,
-  });
+  const newCategory = new Category ({ name: req.body.name });
 
   try {
-    const savedcart = await ccat.save();
-    res.send({
-      message: "categories was created",
-    });
+    const savedCategory= await newCategory.save();
+    res.status(200).send({message: "categories was created", category: savedCategory});
   } catch (err) {
     res.status(400).send(err);
   }
 };
 
-exports.getcat = (req, res, next) => {
-  categories
-    .find()
-    .select("_id product quantity")
-    .populate("product", "_id name price")
+exports.getCategories = (req, res, next) => {
+
+  Category.aggregate([
+      {
+        $lookup: {
+          from: "products",
+          localField: "_id",
+          foreignField: "category",
+          as: "product",
+        },
+      },
+
+      {
+        $project: {
+          name: 1,
+          totalProducts: { $size: "$product" },
+          product: { $slice: ["$product", 2] },
+        },
+      },
+    ])
     .exec()
-    .then((orders) => {
+    .then((products) => {
       res.status(200).json({
-        count: orders.length,
-        orders: orders,
+        count: products.length,
+        categories: products,
       });
     })
     .catch((error) => {
-      next(error);
+      res.send(error);
+      // next(error);
     });
 };
-
-// function createOrder(req) {
-//   return new Cart({
-//     //  _id: mongoose.Types.ObjectId(),
-//     product: req.body.productId,
-//     quantity: req.body.quantity,
-//   });
-// }

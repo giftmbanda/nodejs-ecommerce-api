@@ -670,7 +670,7 @@
 
     "Cart": {
       "type": "object",
-      "required": ["productId", "quantity"],
+      "required": ["userId","productId", "quantity"],
 
       "properties": {
         "userId": {

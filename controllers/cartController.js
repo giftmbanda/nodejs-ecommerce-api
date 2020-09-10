@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== "production") {
 exports.createOrder = async (req, res, next) => {
   const newCart = new Cart({
     product: req.body.productId,
-    quantity: req.body.quantity,
+    quantity: parseInt(req.body.quantity),
     user: req.body.userId,
   });
 

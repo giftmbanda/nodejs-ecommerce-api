@@ -36,7 +36,7 @@ exports.getProducts = (req, res, next) => {
   //query.limit = size;
 
   Product.find({}, {}, query)
-    .select("-_id category name price productImage createdAt")
+    .select("category name price productImage createdAt")
     .populate("category", "-_id name")
     .exec((err, products) => {
       if (err) return res.status(400).send({ message: "showing order", err });

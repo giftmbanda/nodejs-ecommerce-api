@@ -47,6 +47,7 @@ exports.getProducts = (req, res, next) => {
             name: product.name,
             price: product.price,
             productImage: product.productImage,
+            category: product.category.name,
             addedDate: product.createdAt,
           };
         }),

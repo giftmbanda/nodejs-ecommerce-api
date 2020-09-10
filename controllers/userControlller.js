@@ -41,7 +41,7 @@ exports.logIn = async (req, res) => {
     // create and assign jwt
     const token = await jwt.sign({ _id: foundUser._id }, JWT_KEY);
 
-    return res.status(200).header("auth-token", token).send({ "auth-token": token });
+    return res.status(200).header("auth-token", token).send({ "auth-token": token, userId: foundUser._id  });
   } catch (error) {
     return res.status(400).send(error);
   }

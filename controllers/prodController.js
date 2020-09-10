@@ -8,7 +8,7 @@ exports.createProduct = async (req, res, next) => {
   const newProduct = new Product({
     category: req.body.categoryId,
     name: req.body.name,
-    price: parseFloat(req.body.price),
+    price: req.body.price,
     productImage: req.file.path,
     quantity: req.body.quantity,
   });

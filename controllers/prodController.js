@@ -38,26 +38,31 @@ exports.getProducts = (req, res, next) => {
     .find({}, {}, query)
     .select("-_id category name price productImage createdAt")
     .populate("category", "-_id name")
-    .exec()
-    .then((products) => {
-      const response = {
-        count: products.length,
-        products: products.map((product) => {
-          return {
-            category: product.category.name,
-            name: product.name,
-            price: product.price,
-            productImage: product.productImage,
-          };
-        }),
-      };
-      return res.status(200).send({
-        count: products.length,
-        products: products,
-      });
+    .exec((err, products) =>{
+      if (err) return res.status(400).send({ message: "showing order", err });
+      return res.status(200).send({ message:"showing all orders in the cart", products,});
+
     })
-    .catch((error) => {
-      return res.send(error);
-      // next(error);
-    });
+
+    // .then((products) => {
+    //   const response = {
+    //     count: products.length,
+    //     products: products.map((product) => {
+    //       return {
+    //         category: product.category.name,
+    //         name: product.name,
+    //         price: product.price,
+    //         productImage: product.productImage,
+    //       };
+    //     }),
+    //   };
+    //   return res.status(200).send({
+    //     count: products.length,
+    //     products: products,
+    //   });
+    // })
+    // .catch((error) => {
+    //   return res.send(error);
+    //   // next(error);
+    // });
 };

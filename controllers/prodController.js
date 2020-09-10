@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 
 exports.createProduct = async (req, res, next) => {
   const product = new Product({
-    category: req.body.category,
+    category: req.body.categoryId,
     name: req.body.name,
     price: req.body.price,
     productImage: req.file.path,

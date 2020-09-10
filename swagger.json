@@ -739,14 +739,15 @@
 
     "Product": {
       "type": "object",
-      "required": ["name", "price", "productImage", "categoryId"],
+      "required": ["name", "price", "productImage", "categoryId", "quantity"],
 
       "properties": {
         "name": {
           "type": "String"
         },
         "price": {
-          "type": "number"
+          "type": "number",
+          "default": "1"
         },
         "productImage": {
           "type": "String"

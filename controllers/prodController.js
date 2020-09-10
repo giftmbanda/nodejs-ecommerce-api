@@ -44,6 +44,7 @@ exports.getProducts = (req, res, next) => {
         count: products.length,
         products: products.map((product) => {
           return {
+            category: product.category.name,
             name: product.name,
             price: product.price,
             productImage: product.productImage,

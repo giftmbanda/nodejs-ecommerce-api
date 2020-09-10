@@ -16,7 +16,7 @@ exports.createCategory = async (req, res, next) => {
 };
 
 exports.getCategories = (req, res, next) => {
-  Category.find({}, "name createdAt -id", (error, categories) => {
+  Category.find({}, (error, categories) => {
     if (error) return res.status(400).send("an error occured", error);
     return res.status(200).send({ message: "showing categories list", count: categories.length, categories, });
   });

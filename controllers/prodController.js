@@ -15,7 +15,9 @@ exports.createProduct = async (req, res, next) => {
   //productm.init();
   try {
     savedProduct = await product.save();
-    return res.status(200).send({ message: "User created successfully!", product: savedProduct });
+    return res
+      .status(200)
+      .send({ message: "User created successfully!", product: savedProduct });
   } catch (error) {
     if (error.code === 11000)
       return res.status(200).send({ message: "product already exist" });
@@ -33,36 +35,43 @@ exports.getProducts = (req, res, next) => {
   }
   query.skip = size * (pageNo - 1);
   //query.limit = size;
-//  .select("-_id category name price productImage")
-  Product
-    .find({}, {}, query)
+  //  .select("-_id category name price productImage")
+  Product.find({}, {}, query)
     .select("-_id category name price productImage createdAt")
     .populate("category", "-_id name")
-    .exec((err, products) =>{
+    .exec((err, products) => {
       if (err) return res.status(400).send({ message: "showing order", err });
-      return res.status(200).send({ message:"showing all orders in the cart", products,});
 
-    })
+      const productOut = {
+        name: products.name,
+        price: product.price,
+        category: product.category.name,
+        image: product.productImage,
+        orderDate: product.createdAt,
+      };
 
-    // .then((products) => {
-    //   const response = {
-    //     count: products.length,
-    //     products: products.map((product) => {
-    //       return {
-    //         category: product.category.name,
-    //         name: product.name,
-    //         price: product.price,
-    //         productImage: product.productImage,
-    //       };
-    //     }),
-    //   };
-    //   return res.status(200).send({
-    //     count: products.length,
-    //     products: products,
-    //   });
-    // })
-    // .catch((error) => {
-    //   return res.send(error);
-    //   // next(error);
-    // });
+      return res.status(200).send({ message: "showing all orders in the cart", productOut });
+    });
+
+  // .then((products) => {
+  //   const response = {
+  //     count: products.length,
+  //     products: products.map((product) => {
+  //       return {
+  //         category: product.category.name,
+  //         name: product.name,
+  //         price: product.price,
+  //         productImage: product.productImage,
+  //       };
+  //     }),
+  //   };
+  //   return res.status(200).send({
+  //     count: products.length,
+  //     products: products,
+  //   });
+  // })
+  // .catch((error) => {
+  //   return res.send(error);
+  //   // next(error);
+  // });
 };

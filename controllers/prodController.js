@@ -40,15 +40,6 @@ exports.getProducts = (req, res, next) => {
     .populate("category", "-_id name")
     .exec((err, products) => {
       if (err) return res.status(400).send({ message: "showing order", err });
-      //const newPro = returnProducts(products);
-      console.log(products);
       return res.status(200).send({ message: "showing all orders in the cart", products });
     });
 };
-
-
-// function returnProducts(products) {
-//   return {
-//     name: products.name,
-//   };
-// }

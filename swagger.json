@@ -10,13 +10,13 @@
   },
 
   "externalDocs": {
-    "description": "click here to read a little more about the developer",
+    "description": "Read about the developer",
     "url": "http://giftmbanda.com"
   },
 
-  "host": "outset-v1.herokuapp.com/",
+  "host": "localhost:3000",
 
-  "schemes": ["https"],
+  "schemes": ["http"],
 
   "tags": [
     {
@@ -46,7 +46,7 @@
       "post": {
         "tags": ["user"],
         "summary": "Create user",
-        "description": "This can only be done by the logged in user.",
+        "description": "",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
@@ -81,7 +81,7 @@
             "in": "formData",
             "name": "phone",
             "type": "string",
-            "description": "user phone",
+            "description": "user phonenumber",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -102,7 +102,7 @@
     "/user/login": {
       "post": {
         "tags": ["user"],
-        "summary": "Loggin user",
+        "summary": "Log in user",
         "description": "",
 
         "produces": ["application/xml", "application/json"],
@@ -120,7 +120,7 @@
             "in": "formData",
             "name": "password",
             "type": "string",
-            "description": "password email",
+            "description": "user password",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -141,14 +141,15 @@
     "/user/data": {
       "get": {
         "tags": ["user"],
-        "summary": "Check authentication",
-        "description": "token provided upon being succefully logged in",
+        "summary": "Check user authentication",
+        "description": "",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "header",
-            "name": "auth-token"
+            "name": "auth-token",
+            "description": "token given to user upon a successful login"
           }
         ],
         "responses": {
@@ -165,8 +166,8 @@
     "/user/{userId}": {
       "patch": {
         "tags": ["user"],
-        "summary": "Update user if exist",
-        "description": "Update the details of user if it exists.",
+        "summary": "Update user",
+        "description": "",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
@@ -203,7 +204,7 @@
       "delete": {
         "tags": ["user"],
         "summary": "Delete user",
-        "description": "This can only be done by the logged in user.",
+        "description": "",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
@@ -235,7 +236,7 @@
       "post": {
         "tags": ["admin"],
         "summary": "Create admin",
-        "description": "This can only be done by the logged in user.",
+        "description": "",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
@@ -270,7 +271,7 @@
             "in": "formData",
             "name": "phone",
             "type": "string",
-            "description": "admin phone",
+            "description": "admin phonenumber",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -291,7 +292,7 @@
     "/admin/login": {
       "post": {
         "tags": ["admin"],
-        "summary": "Loggin admin",
+        "summary": "Log in admin",
         "description": "",
 
         "produces": ["application/xml", "application/json"],
@@ -329,14 +330,15 @@
     "/admin/data": {
       "get": {
         "tags": ["admin"],
-        "summary": "Check authentication",
-        "description": "token provided upon being succefully logged in",
+        "summary": "Check admin authentication",
+        "description": "",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "header",
-            "name": "admin-token"
+            "name": "admin-token",
+            "description": "token given to admin upon a successful login"
           }
         ],
         "responses": {
@@ -353,8 +355,8 @@
     "/admin/{userId}": {
       "patch": {
         "tags": ["admin"],
-        "summary": "Update admin if exist",
-        "description": "Update the details of admin if it exists.",
+        "summary": "Update admin",
+        "description": "",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
@@ -471,25 +473,16 @@
     "/product": {
       "post": {
         "tags": ["product"],
-        "summary": "add a categories",
+        "summary": "add a product",
         "description": "",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "formData",
-            "name": "categoryId",
-            "type": "string",
-            "description": "User that we want to create",
-            "schema": {
-              "$ref": "#/definitions/Product"
-            }
-          },
-          {
-            "in": "formData",
             "name": "name",
             "type": "string",
-            "description": "User that we want to create",
+            "description": "product name",
             "schema": {
               "$ref": "#/definitions/Product"
             }
@@ -498,17 +491,34 @@
             "in": "formData",
             "name": "price",
             "type": "string",
-            "description": "User that we want to create",
+            "description": "product price",
             "schema": {
               "$ref": "#/definitions/Product"
             }
           },
-
+          {
+            "in": "formData",
+            "name": "quantity",
+            "type": "integer",
+            "description": "product quantity",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
           {
             "in": "formData",
             "name": "productImage",
             "type": "file",
-            "description": "User that we want to create",
+            "description": "product image",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          {
+            "in": "formData",
+            "name": "categoryId",
+            "type": "string",
+            "description": "product categoryId",
             "schema": {
               "$ref": "#/definitions/Product"
             }
@@ -557,7 +567,7 @@
             "in": "formData",
             "name": "userId",
             "type": "string",
-            "description": "id of the user",
+            "description": "user id",
             "schema": {
               "$ref": "#/definitions/Cart"
             }
@@ -566,7 +576,7 @@
             "in": "formData",
             "name": "productId",
             "type": "string",
-            "description": "id of the product",
+            "description": "product id",
             "schema": {
               "$ref": "#/definitions/Cart"
             }
@@ -575,7 +585,7 @@
             "in": "formData",
             "name": "quantity",
             "type": "integer",
-            "description": "quantity of the products",
+            "description": "product quantity",
             "schema": {
               "$ref": "#/definitions/Cart"
             }
@@ -593,13 +603,48 @@
       }
     },
 
-    "/cart/show": {
+    "/cart/{cartId}": {
       "get": {
         "tags": ["cart"],
-        "summary": "list orders",
+        "summary": "show the order",
         "description": "",
 
         "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cartId",
+            "description": "cartId of the order",
+            "type": "string"
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+
+    "/cart/show/{userId}": {
+      "get": {
+        "tags": ["cart"],
+        "summary": "list all the orders of the user / show cart",
+        "description": "",
+
+        "produces": ["application/xml", "application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "description": "id of the user",
+            "type": "string"
+          }
+        ],
 
         "responses": {
           "200": {
@@ -616,7 +661,7 @@
       "delete": {
         "tags": ["admin"],
         "summary": "Delete user",
-        "description": "This can only be done by the logged in admin user.",
+        "description": "",
 
         "produces": ["application/xml", "application/json"],
         "parameters": [
@@ -629,7 +674,7 @@
           {
             "in": "header",
             "name": "admin-token",
-            "description": "token given to user upon a successful login"
+            "description": "token given to admin upon a successful login"
           }
         ],
 
@@ -708,6 +753,10 @@
         },
         "categoryId": {
           "type": "String"
+        },
+        "quantity": {
+          "type": "integer",
+          "default": "1"
         }
       },
 

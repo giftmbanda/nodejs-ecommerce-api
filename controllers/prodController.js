@@ -36,6 +36,7 @@ exports.getProducts = (req, res, next) => {
 //  .select("-_id category name price productImage")
   Product
     .find({}, {}, query)
+    .select("-_id category name price productImage createdAt")
     .populate("category", "-_id name")
     .exec()
     .then((products) => {

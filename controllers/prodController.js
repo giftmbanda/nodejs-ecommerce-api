@@ -37,7 +37,7 @@ exports.getProducts = (req, res, next) => {
   Product
     .find({}, {}, query)
     .select("-_id category name price productImage")
-    .populate("category", "_id name")
+    .populate("category", "-_id name")
     .exec()
     .then((products) => {
       const response = {
@@ -47,6 +47,7 @@ exports.getProducts = (req, res, next) => {
             name: product.name,
             price: product.price,
             productImage: product.productImage,
+            addedDate: product.createdAt,
           };
         }),
       };

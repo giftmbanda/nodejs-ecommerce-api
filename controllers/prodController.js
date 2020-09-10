@@ -10,7 +10,7 @@ exports.createProduct = async (req, res, next) => {
     name: req.body.name,
     price: req.body.price,
     productImage: req.file.path,
-    quantity: req.body.quantity,
+    quantity: parseInt(req.body.quantity),
   });
 
   Product.init();

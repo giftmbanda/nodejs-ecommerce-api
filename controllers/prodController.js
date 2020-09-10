@@ -33,10 +33,9 @@ exports.getProducts = (req, res, next) => {
   }
   query.skip = size * (pageNo - 1);
   //query.limit = size;
-
+//  .select("-_id category name price productImage")
   Product
     .find({}, {}, query)
-    .select("-_id category name price productImage")
     .populate("category", "-_id name")
     .exec()
     .then((products) => {
@@ -47,8 +46,6 @@ exports.getProducts = (req, res, next) => {
             name: product.name,
             price: product.price,
             productImage: product.productImage,
-            category: product.category.name,
-            addedDate: product.createdAt,
           };
         }),
       };

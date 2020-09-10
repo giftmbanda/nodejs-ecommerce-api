@@ -6,6 +6,8 @@ const cateSchema = mongoose.Schema(
       type: String,
       required: true,
       lowercase: true,
+      trim: true,
+      unique: true,
     },
     createdAt: {
       type: Date,

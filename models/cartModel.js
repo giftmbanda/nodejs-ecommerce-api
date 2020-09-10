@@ -14,14 +14,6 @@ const cartSchema = mongoose.Schema(
       type: Number,
       default: 1,
     },
-    createdAt: {
-      type: Date,
-      required: false,
-    },
-    updatedAt: {
-      type: Date,
-      required: false,
-    },
   },
   { timestamps: true } //to include createdAt and updatedAt
 );

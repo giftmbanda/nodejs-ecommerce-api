@@ -41,16 +41,7 @@ exports.getProducts = (req, res, next) => {
     .populate("category", "-_id name")
     .exec((err, products) => {
       if (err) return res.status(400).send({ message: "showing order", err });
-
-      const productOut = {
-        name: products.name,
-        price: products.price,
-        category: products.category.name,
-        image: products.productImage,
-        orderDate: products.createdAt,
-      };
-
-      return res.status(200).send({ message: "showing all orders in the cart", productOut });
+      return res.status(200).send({ message: "showing all orders in the cart", products });
     });
 
   // .then((products) => {
@@ -75,3 +66,15 @@ exports.getProducts = (req, res, next) => {
   //   // next(error);
   // });
 };
+
+
+// function returnProducts(product) {
+//   return {
+//     name: cart.product.name,
+//     price: cart.product.price,
+//     quantity: cart.quantity,
+//     total: (cart.product.price)*(cart.quantity),
+//     image: cart.product.productImage,
+//     orderDate: cart.createdAt,
+//   };
+// }

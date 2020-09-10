@@ -44,10 +44,10 @@ exports.getProducts = (req, res, next) => {
 
       const productOut = {
         name: products.name,
-        price: product.price,
-        category: product.category.name,
-        image: product.productImage,
-        orderDate: product.createdAt,
+        price: products.price,
+        category: products.category.name,
+        image: products.productImage,
+        orderDate: products.createdAt,
       };
 
       return res.status(200).send({ message: "showing all orders in the cart", productOut });

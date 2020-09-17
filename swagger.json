@@ -52,9 +52,18 @@
         "parameters": [
           {
             "in": "formData",
-            "name": "name",
+            "name": "firstName",
             "type": "string",
-            "description": "name of the user",
+            "description": "firstName of the user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            "in": "formData",
+            "name": "lastName",
+            "type": "string",
+            "description": "lastName of the user",
             "schema": {
               "$ref": "#/definitions/User"
             }

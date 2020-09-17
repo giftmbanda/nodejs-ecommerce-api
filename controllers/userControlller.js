@@ -89,7 +89,8 @@ exports.data = async (req, res) => {
 async function createUser(req) {
   const hashPassword = await bcrypt.hashSync(req.body.password, 10);
   return new User({
-    name: req.body.name,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     email: req.body.email,
     password: hashPassword,
     phone: req.body.phone,

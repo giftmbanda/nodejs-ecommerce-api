@@ -242,9 +242,18 @@
         "parameters": [
           {
             "in": "formData",
-            "name": "name",
+            "name": "firstName",
             "type": "string",
-            "description": "name of the admin",
+            "description": "firstName of the admin",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          {
+            "in": "formData",
+            "name": "lastName",
+            "type": "string",
+            "description": "lastName of the admin",
             "schema": {
               "$ref": "#/definitions/User"
             }
@@ -693,10 +702,13 @@
   "definitions": {
     "User": {
       "type": "object",
-      "required": ["name", "email", "password", "phone"],
+      "required": ["firstName", "lastName", "email", "password", "phone"],
 
       "properties": {
-        "name": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
           "type": "string"
         },
         "email": {

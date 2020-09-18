@@ -4,10 +4,12 @@ const userSchema = new mongoose.Schema(
     // _id: mongoose.Schema.Types.ObjectId,
     firstName: {
       type: String,
+      trim: true,
       required: true,
     },
     lastName: {
       type: String,
+      trim: true,
       required: true,
     },
     email: {
@@ -23,6 +25,10 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: String,
       match: /^[0-9]{10}$/,
+    },
+    resetPasswordLink: {
+      data: String,
+      default: '',
     },
     createdAt: {
       type: Date,

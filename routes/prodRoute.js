@@ -6,7 +6,7 @@ const ProdController = require("../controllers/prodController");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "public");
+    cb(null, "uploads");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -24,9 +24,9 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
-  // limits: {
-  //   fileSize: 1024 * 1024 * 5,
-  // },
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
 });
 
 router.post("/", upload.single("productImage"), ProdController.createProduct);

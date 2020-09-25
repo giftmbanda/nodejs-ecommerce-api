@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const swaggerUi = require("swagger-ui-express");
 const cors = require("cors");
+const path = require("path");
 
 const categoryRoute = require("./routes/cateRoute");
 const productRoute = require("./routes/prodRoute");
@@ -18,6 +19,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+
+app.use(express.static(path.join(__dirname, "build")));
 // Routes which should handle requests
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
 app.use("/product", productRoute);

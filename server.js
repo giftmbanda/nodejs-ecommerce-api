@@ -8,6 +8,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 const port = process.env.PORT || 3000;
 
+
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
@@ -20,6 +21,7 @@ server.listen(port, () => {
 // const express = require("express");
 // const app = express();
 // const server = http.createServer(app);
+
 // const publicPath = path.join(__dirname, "uploads");
 // const port = process.env.PORT || 3000;
 // require("./database/db"); //import the database

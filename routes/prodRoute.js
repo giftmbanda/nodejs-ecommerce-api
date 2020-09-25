@@ -4,12 +4,13 @@ const multer = require("multer");
 const ProdController = require("../controllers/prodController");
 //const { verifyUser, verifyAdmin } = require("../verifyToken");
 
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now()+"_"+file.originalname);
+    cb(null, file.originalname);
   },
 });
 
@@ -23,10 +24,9 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({
   storage: storage,
-  fileFilter: fileFilter,
   limits: {
     fileSize: 1024 * 1024 * 5,
-  },
+  }, // fileFilter: fileFilter
 });
 
 router.post("/", upload.single("productImage"), ProdController.createProduct);

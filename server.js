@@ -4,15 +4,16 @@ const path = require("path");
 const express = require("express");
 const app = express();
 const server = http.createServer(app);
-const publicPath = path.join(__dirname, "public");
+const publicPath = path.join(__dirname, "uploads");
 const port = process.env.PORT || 3000;
 require("./database/db"); //import the database
 
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+
 app.use(express.static(publicPath));
 
-app.use("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

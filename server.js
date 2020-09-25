@@ -10,6 +10,9 @@ require("./database/db"); //import the database
 
 app.use(express.static(publicPath));
 
+app.use("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

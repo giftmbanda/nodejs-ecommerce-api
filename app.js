@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "uploads")));
 // Routes which should handle requests
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
 app.use("/product", productRoute);

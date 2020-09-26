@@ -3,14 +3,14 @@ const app = express();
 const bodyParser = require("body-parser");
 const swaggerUi = require("swagger-ui-express");
 const cors = require("cors");
-
+const path = require("path");
+const publicPath = path.join(__dirname, "images");
 const categoryRoute = require("./routes/cateRoute");
 const productRoute = require("./routes/prodRoute");
 const cartRoute = require("./routes/cartRoute");
 const adminRoute = require("./routes/adminRoute");
 const userRoute = require("./routes/userRoute");
 const swaggerDocument = require("./swagger.json");
-
 
 // npm install mongoose-paginate --save
 // Use body parser middleware to parse body of incoming requests
@@ -19,6 +19,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes which should handle requests
+// app.use(express.static(path.join(__dirname, "images")));
+app.use(express.static(publicPath));
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
 app.use("/product", productRoute);
 app.use("/category", categoryRoute);
@@ -28,7 +30,9 @@ app.use("/user", userRoute);
 // Handle Error Requests
 
 app.get("/", (req, res) => {
-  res.send('API IS NOW WORKING, append "/docs" to the current url to access API documentation');
+  res.send(
+    'API IS NOW WORKING, append "/docs" to the current url to access API documentation'
+  );
 });
 
 // Handle Error Requests

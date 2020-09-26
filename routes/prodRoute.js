@@ -4,10 +4,9 @@ const multer = require("multer");
 const ProdController = require("../controllers/prodController");
 //const { verifyUser, verifyAdmin } = require("../verifyToken");
 
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, "images");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -15,18 +14,19 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype == 'image/jpeg' || file.mimetype == 'image/png') {
-        cb(null, true);
-    } else {
-        cb(null, false);
-    }
-}
+  if (file.mimetype == "image/jpeg" || file.mimetype == "image/png") {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
 
 const upload = multer({
   storage: storage,
   limits: {
     fileSize: 1024 * 1024 * 5,
-  }, // fileFilter: fileFilter
+  },
+  fileFilter: fileFilter,
 });
 
 router.post("/", upload.single("productImage"), ProdController.createProduct);

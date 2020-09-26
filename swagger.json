@@ -14,9 +14,9 @@
     "url": "http://giftmbanda.com"
   },
 
-  "host": "outset-v1.herokuapp.com",
+  "host": "localhost:3000",
 
-  "schemes": ["https"],
+  "schemes": ["http"],
 
   "tags": [
     {

@@ -507,6 +507,15 @@
           },
           {
             "in": "formData",
+            "name": "description",
+            "type": "string",
+            "description": "product name",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          },
+          {
+            "in": "formData",
             "name": "price",
             "type": "string",
             "description": "product price",
@@ -760,10 +769,13 @@
 
     "Product": {
       "type": "object",
-      "required": ["name", "price", "productImage", "categoryId", "quantity"],
+      "required": ["name", "description", "price", "productImage", "categoryId", "quantity"],
 
       "properties": {
         "name": {
+          "type": "String"
+        },
+        "description": {
           "type": "String"
         },
         "price": {

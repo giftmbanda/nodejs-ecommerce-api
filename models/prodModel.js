@@ -13,6 +13,11 @@ const productSchema = mongoose.Schema(
       unique: true,
       trim: true,
     },
+    description: {
+      type: String,
+      lowercase: true,
+      trim: true,
+    },
     price: {
       type: Number,
       default: 1,

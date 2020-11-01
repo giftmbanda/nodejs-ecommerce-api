@@ -54,13 +54,13 @@ exports.getProducts = (req, res, next) => {
   const size = 3;
   const query = {};
   if (pageNo < 0 || pageNo == 0) {
-    return resres.status(200).send({ error: true, message: "inavlid page number" });
+    return resres.status(200).send({ error: true, message: "invalid page number" });
   }
   //query.skip = size * (pageNo - 1);
   //query.limit = size;
 
   Product.find({}, {}, query)
-    .select("category name price productImage createdAt")
+    .select("-_id -updatedAt")
     .populate("category", "-_id name")
     .exec((err, products) => {
       if (err) return res.status(400).send({ message: "showing order", err });

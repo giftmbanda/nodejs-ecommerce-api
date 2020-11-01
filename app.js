@@ -22,7 +22,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes which should handle requests
-// app.use(express.static(path.join(__dirname, "images")));
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument)); //still working on it
 app.use("/product", productRoute);
 app.use("/category", categoryRoute);

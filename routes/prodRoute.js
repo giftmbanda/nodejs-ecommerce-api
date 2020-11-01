@@ -1,4 +1,5 @@
 const express = require("express");
+const { date } = require("joi");
 const router = express.Router();
 const multer = require("multer");
 const ProdController = require("../controllers/prodController");
@@ -6,10 +7,12 @@ const ProdController = require("../controllers/prodController");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images/");
+    cb(null, "public/uploads/");
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname);
+
+    const ext = file.mimetype.split('/')[1];
+    cb(null, `${Date.now()}.${ext}`);
   },
 });
 

@@ -5,23 +5,46 @@ if (process.env.NODE_ENV !== "production") {
 
 exports.createProduct = async (req, res, next) => {
 
-  const newProduct = new Product({
+  // const newProduct = new Product({
+  //   category: req.body.categoryId,
+  //   name: req.body.name,
+  //   price: req.body.price,
+  //   productImage: req.file.filename,
+  //   quantity: req.body.quantity,
+  // });
+
+  const newProduct = {
     category: req.body.categoryId,
     name: req.body.name,
     price: req.body.price,
-    productImage: req.file.path,
+    productImage: req.file.filename,
     quantity: req.body.quantity,
-  });
+  };
 
-  Product.init();
-  newProduct.save((err, savedProduct) => {
-    if (err) {
-      if (err.code === 11000)
-        return res.status(200).send({ message: "product already exist" });
-      return res.status(400).send({ error: "unable to create product", error });
-    }
-    return res.status(200).send({ message: "User created successfully!", product: savedProduct });
-  });
+  try {
+
+    const product = await Product.create(newProduct);
+    return res.status(200).send({ message: "User created successfully!", product });
+
+  } catch (error) {
+
+    if (error.code === 11000) return res.status(200).send({ message: "product already exist" });
+    return res.status(400).send({ error: "unable to create product", error });
+
+  }
+
+
+  // Product.init();
+
+  // newProduct.save((err, savedProduct) => {
+  //   if (err) {
+  //     if (err.code === 11000)
+
+  //       return res.status(200).send({ message: "product already exist" });
+  //     return res.status(400).send({ error: "unable to create product", error });
+  //   }
+  //   return res.status(200).send({ message: "User created successfully!", product: savedProduct });
+  // });
 };
 
 exports.getProducts = (req, res, next) => {

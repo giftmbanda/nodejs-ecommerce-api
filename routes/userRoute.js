@@ -1,15 +1,15 @@
 const router = require("express").Router();
-const userControler = require("../controllers/userControlller");
+const userController = require("../controllers/userController");
 const { verifyUser, verifyAdmin } = require("../verifyToken");
 
-router.post("/", userControler.signUp);
+router.post("/", userController.signUp);
 
-router.post("/login", userControler.logIn);
+router.post("/login", userController.logIn);
 
-router.patch('/:userId', userControler.updateUser);
+router.patch('/:userId', userController.updateUser);
 
-router.delete('/:userId', userControler.deleteUser);
+router.delete('/:userId', userController.deleteUser);
 
-router.get("/data", verifyUser, userControler.data);
+router.get("/data", verifyUser, userController.data);
 
 module.exports = router;

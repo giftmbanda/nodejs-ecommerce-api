@@ -47,11 +47,11 @@ exports.logIn = async (req, res) => {
   }
 };
 // Update admin
-exports.updateAdmn = async (req, res) => {
+exports.updateAdmin = async (req, res) => {
   try {
 
     req.body.password = await bcrypt.hashSync(req.body.password, 10); //encrypt the password before updating
-    const updatedAdmin = await Admin.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body });
+    const updatedAdmin = await Admin.findByIdAndUpdate(req.params.userId, { $set: req.body }, { new: true });
     // findOneAndUpdate returns a document if found or null if not found
 
     if (!updatedAdmin) {
@@ -60,7 +60,7 @@ exports.updateAdmn = async (req, res) => {
     return res.status(200).send({ message: "User updated successfully", updatedUser});
 
   } catch (error) {
-    return res.status(400).send({ error: "An error has occured, unable to update user" });
+    return res.status(400).send({ error: "An error has occurred, unable to update user" });
   }
 };
 

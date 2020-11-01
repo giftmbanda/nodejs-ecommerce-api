@@ -14,9 +14,9 @@
     "url": "http://giftmbanda.com"
   },
 
-  "host": "outset-v1.herokuapp.com",
+  "host": "localhost:3000",
 
-  "schemes": ["https"],
+  "schemes": ["http"],
 
   "tags": [
     {
@@ -509,7 +509,7 @@
             "in": "formData",
             "name": "description",
             "type": "string",
-            "description": "product name",
+            "description": "product description",
             "schema": {
               "$ref": "#/definitions/Product"
             }

@@ -8,15 +8,7 @@ const cateSchema = mongoose.Schema(
       lowercase: true,
       trim: true,
       unique: true,
-    },
-    createdAt: {
-      type: Date,
-      required: false,
-    },
-    updatedAt: {
-      type: Date,
-      required: false,
-    },
+    }
   },
   { timestamps: true } //to include createdAt and updatedAt
 );

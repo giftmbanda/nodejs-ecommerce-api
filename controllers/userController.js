@@ -19,7 +19,7 @@ exports.signUp = async (req, res, next) => {
 
   try {
     const newUser = await createUser(req);
-    const savedUser = await newUser.save(); 
+    const savedUser = await newUser.save();
     return res.status(200).send({ message: "User created successfully!", user: savedUser });
   } catch (err) {
     return res.status(400).send({ error: "User created successfully!", error: err });
@@ -41,7 +41,7 @@ exports.logIn = async (req, res) => {
     // create and assign jwt
     const token = await jwt.sign({ _id: foundUser._id }, JWT_KEY);
 
-    return res.status(200).header("auth-token", token).send({ "auth-token": token, userId: foundUser._id  });
+    return res.status(200).header("auth-token", token).send({ "auth-token": token, userId: foundUser._id });
   } catch (error) {
     return res.status(400).send(error);
   }
@@ -50,8 +50,8 @@ exports.logIn = async (req, res) => {
 // Update user
 exports.updateUser = async (req, res) => {
   try {
-    req.body.password = await bcrypt.hashSync(req.body.password, 10); //encrypt the password before updating
-    const updatedUser = await User.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body });
+    req.body.password = bcrypt.hashSync(req.body.password, 10); //encrypt the password before updating
+    const updatedUser = await User.findByIdAndUpdate(req.params.userId, { $set: req.body }, { new: true });
 
     if (!updatedUser) {
       return res.status(400).send({ message: "Could not update user" });
@@ -59,21 +59,21 @@ exports.updateUser = async (req, res) => {
     return res.status(200).send({ message: "User updated successfully", updatedUser });
 
   } catch (error) {
-    return res.status(400).send({ error: "An error has occured, unable to update user" });
+    return res.status(400).send({ error: "An error has occurred, unable to update user" });
   }
 };
 
 // Delete user
 exports.deleteUser = async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete({ _id: req.params.userId}); // the `await` is very important here!
+    const deletedUser = await User.findByIdAndDelete({ _id: req.params.userId }); // the `await` is very important here!
 
     if (!deletedUser) {
       return res.status(400).send({ message: "Could not delete user" });
     }
     return res.status(200).send({ message: "User deleted successfully", user: deletedUser });
   } catch (error) {
-    return res.status(400).send({ error: "An error has occured, unable to delete user" });
+    return res.status(400).send({ error: "An error has occurred, unable to delete user" });
   }
 };
 

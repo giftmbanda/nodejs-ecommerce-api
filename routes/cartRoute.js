@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const cartControler = require("../controllers/cartController");
+const cartController = require("../controllers/cartController");
 const { verifyUser, verifyAdmin } = require("../verifyToken");
 
-router.post("/", cartControler.createOrder);
+router.post("/", cartController.createOrder);
 
-router.get("/:cartId", cartControler.getOrder);
+router.get("/:cartId", cartController.getOrder);
 
-router.get("/show/:userId", cartControler.getAllOrders);
-// router.get("/cart", verifyUser, cartControler.cart);
+router.get("/show/:userId", cartController.getAllOrders);
+// router.get("/cart", verifyUser, cartController.cart);
 
 module.exports = router;

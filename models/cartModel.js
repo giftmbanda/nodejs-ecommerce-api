@@ -15,7 +15,7 @@ const cartSchema = mongoose.Schema(
       default: 1,
     },
   },
-  { timestamps: true } //to include createdAt and updatedAt
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("Cart", cartSchema);

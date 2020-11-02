@@ -14,15 +14,15 @@ exports.signUp = async (req, res, next) => {
   const { error } = registerValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
-  const emailexist = await Admin.findOne({ email: req.body.email });
-  if (emailexist) return res.status(400).send("email  already exist");
+  const emailExist = await Admin.findOne({ email: req.body.email });
+  if (emailExist) return res.status(400).send("email  already exist");
 
   try {
     const newAdmin = await createAdmin(req);
     const savedAdmin = await newAdmin.save(); 
     return res.status(200).send({ message: "User created successfully!", user: savedAdmin  });
-  } catch (err) {
-    return res.status(400).send(err);
+  } catch (error) {
+    return res.status(400).send(error);
   }
 };
 
@@ -52,7 +52,6 @@ exports.updateAdmin = async (req, res) => {
 
     req.body.password = await bcrypt.hashSync(req.body.password, 10); //encrypt the password before updating
     const updatedAdmin = await Admin.findByIdAndUpdate(req.params.userId, { $set: req.body }, { new: true });
-    // findOneAndUpdate returns a document if found or null if not found
 
     if (!updatedAdmin) {
       return res.status(400).send({ message: "Could not update user" });
@@ -74,7 +73,7 @@ exports.deleteAdmin = async (req, res) => {
     }
     return res.status(200).send({ message: "User deleted successfully", user: deletedAdmin});
   } catch (error) {
-    return res.status(400).send({ error: "An error has occured, unable to delete user" });
+    return res.status(400).send({ error: "An error has occurred, unable to delete user" });
   }
 };
 

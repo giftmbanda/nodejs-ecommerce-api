@@ -66,7 +66,7 @@ exports.updateUser = async (req, res) => {
 // Delete user
 exports.deleteUser = async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete({ _id: req.params.userId }); // the `await` is very important here!
+    const deletedUser = await User.findByIdAndDelete(req.params.userId); // the `await` is very important here!
 
     if (!deletedUser) {
       return res.status(400).send({ message: "Could not delete user" });
@@ -81,18 +81,17 @@ exports.data = async (req, res) => {
   return res.json({
     posts: {
       title: "User Authentication",
-      discription: "random data you can access because you\'re authenticated",
+      description: "random data you can access because you\'re authenticated",
     },
   });
 };
 
 async function createUser(req) {
-  const hashPassword = await bcrypt.hashSync(req.body.password, 10);
   return new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    password: hashPassword,
+    password: bcrypt.hashSync(req.body.password, 10),
     phone: req.body.phone,
   });
 }

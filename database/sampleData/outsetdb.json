@@ -1,0 +1,172 @@
+[{
+  "_id": {
+    "$oid": "5fa01a9fbe0f630004153c84"
+  },
+  "price": 18999,
+  "quantity": 7,
+  "category": {
+    "$oid": "5fa01612ed8dff0004329134"
+  },
+  "name": "canon eos-1d x mark iii",
+  "description": "life is full of unrepeatable moments. capture more of them with the eos-1d x mark iii and tell your visual story to the world.",
+  "productImage": "1604328092204.png",
+  "createdAt": {
+    "$date": "2020-11-02T14:41:35.143Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-02T14:41:35.143Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fa01b57be0f630004153c85"
+  },
+  "price": 18500,
+  "quantity": 1,
+  "category": {
+    "$oid": "5fa01612ed8dff0004329134"
+  },
+  "name": "canon eos-1d x mark ii",
+  "description": "20.2 megapixel full-frame sensor. 61-point af system. up to 14fps. iso to 409,600.",
+  "productImage": "1604328278151.png",
+  "createdAt": {
+    "$date": "2020-11-02T14:44:39.782Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-02T14:44:39.782Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fa01bd5be0f630004153c86"
+  },
+  "price": 21199,
+  "quantity": 3,
+  "category": {
+    "$oid": "5fa01612ed8dff0004329134"
+  },
+  "name": "canon eos 5ds r",
+  "description": "50.6 megapixel sister camera to the eos 5ds. with a low-pass cancellation filter for super sharp detail.",
+  "productImage": "1604328403917.png",
+  "createdAt": {
+    "$date": "2020-11-02T14:46:45.034Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-02T14:46:45.034Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fa01c24be0f630004153c87"
+  },
+  "price": 22911,
+  "quantity": 5,
+  "category": {
+    "$oid": "5fa01612ed8dff0004329134"
+  },
+  "name": "canon eos 5ds",
+  "description": "50.6 megapixels and dual digic 6 processors combine to create a new benchmark in high-resolution imaging.",
+  "productImage": "1604328482918.png",
+  "createdAt": {
+    "$date": "2020-11-02T14:48:04.311Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-02T14:48:04.311Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fa01cb5be0f630004153c88"
+  },
+  "price": 19100,
+  "quantity": 2,
+  "category": {
+    "$oid": "5fa01612ed8dff0004329134"
+  },
+  "name": "canon eos 5d mk iii",
+  "description": "a versatile full-frame dslr capable of capturing 22-megapixel images at 6fps and full-hd video.",
+  "productImage": "1604328628561.png",
+  "createdAt": {
+    "$date": "2020-11-02T14:50:29.898Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-02T14:50:29.898Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fa01ecfbe0f630004153c8a"
+  },
+  "price": 42199,
+  "quantity": 2,
+  "category": {
+    "$oid": "5fa01de5be0f630004153c89"
+  },
+  "name": "13-inch macbook pro",
+  "description": "13-inch macbook pro 2.0ghz quad-core 10th-gen i5 processor 1tb - space grey",
+  "productImage": "1604329167173.jpeg",
+  "createdAt": {
+    "$date": "2020-11-02T14:59:27.178Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-02T14:59:27.178Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fa01f5ebe0f630004153c8c"
+  },
+  "price": 27999,
+  "quantity": 8,
+  "category": {
+    "$oid": "5fa01de5be0f630004153c89"
+  },
+  "name": "13-inch macbook pro 1.4ghz",
+  "description": "13-inch macbook pro 1.4ghz quad-core 8th-gen i5 processor 256gb - space grey",
+  "productImage": "1604329310846.jpeg",
+  "createdAt": {
+    "$date": "2020-11-02T15:01:50.850Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-02T15:01:50.850Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fa02047be0f630004153c8e"
+  },
+  "price": 34999,
+  "quantity": 2,
+  "category": {
+    "$oid": "5fa02008be0f630004153c8d"
+  },
+  "name": "iphone 11 pro max 512gb gold",
+  "description": "with its triple rear camera and all-day battery life, iphone 11 pro max has got the world talking. it is the most advanced of its kind, boasting the fastest chip (a13 bionic) and the brightest display ever to be seen in an iphone (super retina xdr oled).",
+  "productImage": "1604329543182.jpeg",
+  "createdAt": {
+    "$date": "2020-11-02T15:05:43.186Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-02T15:05:43.186Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fa02147be0f630004153c8f"
+  },
+  "price": 9999,
+  "quantity": 2,
+  "category": {
+    "$oid": "5fa02008be0f630004153c8d"
+  },
+  "name": "iphone se 64gb - black",
+  "description": "the latest generation of iphone. featuring portrait mode for studio-quality portraits with six lighting effects. next- generation smart hdr for incredible detail across highlights and shadows. cinematic-quality 4k video. amazing battery life. brilliant retina displays. water resistance and stunning new finishes.",
+  "productImage": "1604329799125.jpeg",
+  "createdAt": {
+    "$date": "2020-11-02T15:09:59.130Z"
+  },
+  "updatedAt": {
+    "$date": "2020-11-02T15:09:59.130Z"
+  },
+  "__v": 0
+}]

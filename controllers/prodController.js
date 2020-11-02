@@ -5,7 +5,15 @@ if (process.env.NODE_ENV !== "production") {
 
 exports.createProduct = async (req, res, next) => {
   try {
-    const newProduct = await createProductObj(req);
+    const newProduct = {
+      category: req.body.categoryId,
+      name: req.body.name,
+      price: req.body.price,
+      description: req.body.description,
+      productImage: req.file.filename,
+      quantity: req.body.quantity,
+    };
+    //const newProduct = await createProductObj(req);
     const product = await Product.create(newProduct);
     return res.status(200).send({ message: "User created successfully!", product });
   } catch (error) {

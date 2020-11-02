@@ -18,8 +18,8 @@ exports.signUp = async (req, res, next) => {
   if (emailExist) return res.status(400).send({ message: "Email already exist!" });
 
   try {
-    const newUser = await createUser(req);
-    const savedUser = await newUser.save();
+    const newUser = await createUserObj(req);
+    const savedUser = await User.create(newUser);
     return res.status(200).send({ message: "User created successfully!", user: savedUser });
   } catch (err) {
     return res.status(400).send({ error: "User created successfully!", error: err });
@@ -32,11 +32,11 @@ exports.logIn = async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   const foundUser = await User.findOne({ email: req.body.email }); //returns the first document that matches the query criteria or null
-  if (!foundUser) return res.status(400).send({ message: "Email is not found" });
+  if (!foundUser) return res.status(400).send({ message: "invalid login credential" });
 
   try {
     const isMatch = await bcrypt.compareSync(req.body.password, foundUser.password);
-    if (!isMatch) return res.status(400).send({ message: "invalid password" });
+    if (!isMatch) return res.status(400).send({ message: "invalid login credential" });
 
     // create and assign jwt
     const token = await jwt.sign({ _id: foundUser._id }, JWT_KEY);
@@ -86,12 +86,12 @@ exports.data = async (req, res) => {
   });
 };
 
-async function createUser(req) {
-  return new User({
+const createUserObj = async (req) => {
+  return {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 10),
     phone: req.body.phone,
-  });
+  };
 }

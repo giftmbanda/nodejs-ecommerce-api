@@ -4,17 +4,8 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 exports.createProduct = async (req, res, next) => {
-
-  const newProduct = {
-    category: req.body.categoryId,
-    name: req.body.name,
-    price: req.body.price,
-    description: req.body.description,
-    productImage: req.file.filename,
-    quantity: req.body.quantity,
-  };
-
   try {
+    const newProduct = await createProductObj(req);
     const product = await Product.create(newProduct);
     return res.status(200).send({ message: "User created successfully!", product });
   } catch (error) {
@@ -30,15 +21,18 @@ exports.updateProduct = async (req, res, next) => {
 
 
 exports.getProducts = (req, res, next) => {
-  const pageNo = parseInt(req.query.pageNo);
 
+  const pageNo = parseInt(req.query.pageNo);
   const size = 3;
-  const query = {};
-  if (pageNo < 0 || pageNo == 0) {
-    return resres.status(200).send({ error: true, message: "invalid page number" });
+ 
+  if (pageNo <= 0 ) {
+    return res.status(200).send({ error: true, message: "invalid page number" });
   }
-  //query.skip = size * (pageNo - 1);
-  //query.limit = size;
+
+  const query = {
+    //skip = size * (pageNo - 1),
+    //limit = size,
+  };
 
   Product.find({}, {}, query)
     .select("-_id -__v -updatedAt")
@@ -48,3 +42,14 @@ exports.getProducts = (req, res, next) => {
       return res.status(200).send({ message: "showing all orders in the cart", products });
     });
 };
+
+const createProductObj = async (req) => {
+  return {
+    category: req.body.categoryId,
+    name: req.body.name,
+    price: req.body.price,
+    description: req.body.description,
+    productImage: req.file.filename,
+    quantity: req.body.quantity,
+  };
+}

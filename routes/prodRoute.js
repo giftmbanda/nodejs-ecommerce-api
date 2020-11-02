@@ -10,7 +10,6 @@ const storage = multer.diskStorage({
     cb(null, "public/uploads/");
   },
   filename: (req, file, cb) => {
-
     const ext = file.mimetype.split('/')[1];
     cb(null, `${Date.now()}.${ext}`);
   },
@@ -27,7 +26,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1024 * 1024 * 5,
+    fileSize: 1024 * 1024 * 10,
   },
   fileFilter: fileFilter,
 });

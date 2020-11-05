@@ -3,7 +3,7 @@ const { date } = require("joi");
 const router = express.Router();
 const multer = require("multer");
 const ProdController = require("../controllers/prodController");
-//const { verifyUser, verifyAdmin } = require("../verifyToken");
+//const { verifyUser, verifyAdmin } = require("../middleware/verifyToken");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

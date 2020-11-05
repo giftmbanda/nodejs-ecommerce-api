@@ -6,7 +6,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const Admin = require("../models/adminModel");
 const MASTER_KEY = process.env.MASTER_KEY;
-const { registerValidation, loginValidation } = require("../validation");
+const { registerValidation, loginValidation } = require("../middleware/validation");
 
 
 // signup

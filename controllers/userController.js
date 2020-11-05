@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const User = require("../models/userModel");
-const { registerValidation, loginValidation } = require("../validation");
+const { registerValidation, loginValidation } = require("../middleware/validation");
 const JWT_KEY = process.env.JWT_KEY;
 
 
